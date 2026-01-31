@@ -8,7 +8,7 @@ public class AutomatedBuild
     {
         string[] scenes = new string[] { "Assets/Scenes/SampleScene.unity" };
 
-        string buildPath = "builds/build.html";
+        string buildPath = "builds/WebGL.html";
 
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
         {
