@@ -41,14 +41,8 @@ jobs:
             builds/**/*.html
             builds/**/*.html
 
-      deploy:
-          needs: build
-          runs-on: ubuntu-latest
-          environment: 
-            name: github-pages
-            url: ${{steps.deployment.outputs.page_url}}
-          steps:
-            - name: Deploy to GitHub Pages
-              id: deployment
-              uses: actions/deploy-pages@v4
-            
+      - name: Deploy
+        uses: ceichert31/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: build/WebGL
