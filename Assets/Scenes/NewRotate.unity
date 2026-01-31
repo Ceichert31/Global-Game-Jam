@@ -965,6 +965,7 @@ GameObject:
   m_Component:
   - component: {fileID: 994843824}
   - component: {fileID: 994843823}
+  - component: {fileID: 994843825}
   m_Layer: 0
   m_Name: Spotlight
   m_TagString: Untagged
@@ -1040,6 +1041,21 @@ Transform:
   - {fileID: 2140285275}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &994843825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994843822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb5214a2494e5447bba69c6e171ec77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightingBoundLeft: -20
+  lightingBoundRight: 20
+  moveSpeed: 0.5
 --- !u!1 &1094585805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,6 +1844,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7
   grid: {fileID: 1413611123}
+  footsteps: {fileID: 0}
+  source: {fileID: 0}
 --- !u!1001 &1412306615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1940,6 +1958,7 @@ MonoBehaviour:
   debug: 0
   isActive: 1
   propObject: {fileID: 8216714926860384011, guid: 8250194923c1b064aaf8fbbef04e96a3, type: 3}
+  rubbishObject: {fileID: 0}
 --- !u!1 &1427966122
 GameObject:
   m_ObjectHideFlags: 0

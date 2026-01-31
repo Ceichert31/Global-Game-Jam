@@ -59,6 +59,13 @@ public class LightingContols : MonoBehaviour
         //    //);
         //}
 
+        if (lightActions.MoveLight.ReadValue<float>() != 0) 
+        {
+            transform.up = new Vector3(1, 0, 0);
+        }
+
+        
+
         //if (transform.position.x < lightingBoundLeft) // If too far left
         //{
         //    //transform.position = lightingBoundLeft;
