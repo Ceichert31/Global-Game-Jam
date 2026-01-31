@@ -24,7 +24,7 @@ public class DetectLight : MonoBehaviour
     float pointsGained = 2.0f;
 
     [SerializeField]
-    private List<GameObject> objectsInLight = new();
+    private HashSet<GameObject> objectsInLight = new();
 
     private void Update()
     {
@@ -41,17 +41,36 @@ public class DetectLight : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Add object
-        if (collision.gameObject.layer != playerLayer)
+        if (collision.gameObject.layer == playerLayer)
+        {
+            objectsInLight.Add(collision.gameObject);
             return;
+        }
+    }
 
-        objectsInLight.Add(collision.gameObject);
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out IProp propData))
+        {
+            if (propData.GetPropStatus())
+            {
+                objectsInLight.Add(collision.gameObject);
+            }
+            else
+            {
+                objectsInLight.Remove(collision.gameObject);
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         //Remove object
-        if (collision.gameObject.layer != playerLayer)
+        if (collision.gameObject.layer == playerLayer)
+        {
+            objectsInLight.Remove(collision.gameObject);
             return;
+        }
 
         objectsInLight.Remove(collision.gameObject);
     }
