@@ -28,6 +28,13 @@ public class PlayerInteractor : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (isHolding)
+        {
+            //Handle dropping logic
+            //Will need grid here
+            return;
+        }
+
         if (!canInteract)
             return;
 
@@ -38,6 +45,8 @@ public class PlayerInteractor : MonoBehaviour
             return;
 
         canInteract = false;
+
+        isHolding = true;
 
         collision.transform.SetParent(holdPos);
 
