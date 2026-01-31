@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class DetectLight : MonoBehaviour
 {
     [SerializeField]
     GameObject spotlight;
+    [SerializeField] private int playerLayer;
+    [SerializeField] private int actorLayer;
+    [SerializeField] private int numActors = 1;
+    [SerializeField] float pointsLost = 4.0f;
+    [SerializeField] float pointsGained = 2.0f;
 
     private void Update()
     {
@@ -22,6 +28,30 @@ public class DetectLight : MonoBehaviour
         {
             i++;
             Debug.Log("HIT" + i + ":" + "(" + col2d.transform.position + ")");
+        }
+
+        CheckActors(collisions);
+    }
+
+    void CheckActors(List<Collider2D> collisions)
+    {
+        int actorsInLight = 0;
+        foreach (Collider2D c in collisions)
+        {
+            if (c.gameObject.layer == playerLayer)
+            {
+                AudienceManager.instance.LoseSatisfaction(pointsLost * Time.deltaTime);
+                return;
+            }
+            else if (c.gameObject.layer == actorLayer)
+            {
+                actorsInLight++;
+            }
+        }
+
+        if (actorsInLight == numActors)
+        {
+            AudienceManager.instance.GainSatisfaction(pointsGained * Time.deltaTime);
         }
     }
 
