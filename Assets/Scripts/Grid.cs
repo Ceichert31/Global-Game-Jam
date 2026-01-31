@@ -12,6 +12,10 @@ public class Grid : MonoBehaviour
     [SerializeField]
     private float gridHeight = 20f;
 
+    [Range(0, 100)]
+    [SerializeField]
+    private float propSpawnChance = 5f;
+
     private Dictionary<Vector2, TileData> gridData = new();
 
     [SerializeField]
@@ -19,9 +23,8 @@ public class Grid : MonoBehaviour
 
     public bool isActive;
 
-    public GameObject testObj;
-
-    public GameObject obstacleObj;
+    [SerializeField]
+    private GameObject propObject;
 
     private void Awake()
     {
@@ -32,17 +35,18 @@ public class Grid : MonoBehaviour
         {
             for (float j = 0; j < gridHeight; j += gridSize)
             {
-                int value = Random.Range(0, 50);
+                int value = Random.Range(0, 100);
 
-                if (value <= 40)
+                Vector2 key = new Vector2(i, j);
+
+                if (value <= propSpawnChance)
                 {
-                    //Instantiate(testObj, new Vector2(i, j), Quaternion.identity, transform);
-                    gridData.TryAdd(new Vector2(i, j), new TileData(false, new Vector2(i, j)));
+                    Instantiate(propObject, key, Quaternion.identity, transform);
+                    gridData.TryAdd(new Vector2(i, j), new TileData(true, key));
                 }
                 else
                 {
-                    //Instantiate(obstacleObj, new Vector2(i, j), Quaternion.identity, transform);
-                    gridData.TryAdd(new Vector2(i, j), new TileData(true, new Vector2(i, j)));
+                    gridData.TryAdd(new Vector2(i, j), new TileData(true, key));
                 }
             }
         }
@@ -72,15 +76,11 @@ public class Grid : MonoBehaviour
 
         Gizmos.color = Color.white;
 
-        Vector2 previousPos = Vector2.zero;
-
         for (float i = 0; i < gridWidth; i += gridSize)
         {
             for (float j = 0; j < gridHeight; j += gridSize)
             {
                 Gizmos.DrawCube(new Vector3(i, j), new Vector2(gridSize, gridSize));
-
-                previousPos = new Vector2(i, j);
             }
         }
     }
