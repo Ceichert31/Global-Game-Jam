@@ -113,6 +113,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
+                    ""id"": ""fadf3ed0-f3d7-4169-b8e2-03aea44dd619"",
                     ""id"": ""5e4da62f-fcb3-46d9-b9c1-9eb275353759"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -814,6 +815,56 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Lighting"",
+            ""id"": ""5984f292-299b-4b12-a07b-6d195eef6ee8"",
+            ""actions"": [
+                {
+                    ""name"": ""MoveLight"",
+                    ""type"": ""Value"",
+                    ""id"": ""1fe96430-e5db-4a3f-90d2-30a8784ab614"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""QE"",
+                    ""id"": ""dbcda0b5-6596-4443-953d-abd6d0c8f572"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveLight"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""c43ef1e7-aaa0-4680-9640-65c88fbfc68e"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""MoveLight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""8cd0a9ac-23ce-4259-aff4-76c6e73b64bb"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""MoveLight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -835,12 +886,16 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Lighting
+        m_Lighting = asset.FindActionMap("Lighting", throwIfNotFound: true);
+        m_Lighting_MoveLight = m_Lighting.FindAction("MoveLight", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerControls.Player.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, PlayerControls.UI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Lighting.enabled, "This will cause a leak and performance issues, PlayerControls.Lighting.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1225,6 +1280,102 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="UIActions" /> instance referencing this action map.
     /// </summary>
     public UIActions @UI => new UIActions(this);
+
+    // Lighting
+    private readonly InputActionMap m_Lighting;
+    private List<ILightingActions> m_LightingActionsCallbackInterfaces = new List<ILightingActions>();
+    private readonly InputAction m_Lighting_MoveLight;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Lighting".
+    /// </summary>
+    public struct LightingActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public LightingActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Lighting/MoveLight".
+        /// </summary>
+        public InputAction @MoveLight => m_Wrapper.m_Lighting_MoveLight;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Lighting; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="LightingActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(LightingActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="LightingActions" />
+        public void AddCallbacks(ILightingActions instance)
+        {
+            if (instance == null || m_Wrapper.m_LightingActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_LightingActionsCallbackInterfaces.Add(instance);
+            @MoveLight.started += instance.OnMoveLight;
+            @MoveLight.performed += instance.OnMoveLight;
+            @MoveLight.canceled += instance.OnMoveLight;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="LightingActions" />
+        private void UnregisterCallbacks(ILightingActions instance)
+        {
+            @MoveLight.started -= instance.OnMoveLight;
+            @MoveLight.performed -= instance.OnMoveLight;
+            @MoveLight.canceled -= instance.OnMoveLight;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="LightingActions.UnregisterCallbacks(ILightingActions)" />.
+        /// </summary>
+        /// <seealso cref="LightingActions.UnregisterCallbacks(ILightingActions)" />
+        public void RemoveCallbacks(ILightingActions instance)
+        {
+            if (m_Wrapper.m_LightingActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="LightingActions.AddCallbacks(ILightingActions)" />
+        /// <seealso cref="LightingActions.RemoveCallbacks(ILightingActions)" />
+        /// <seealso cref="LightingActions.UnregisterCallbacks(ILightingActions)" />
+        public void SetCallbacks(ILightingActions instance)
+        {
+            foreach (var item in m_Wrapper.m_LightingActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_LightingActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="LightingActions" /> instance referencing this action map.
+    /// </summary>
+    public LightingActions @Lighting => new LightingActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
     /// </summary>
@@ -1331,5 +1482,20 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Lighting" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="LightingActions.AddCallbacks(ILightingActions)" />
+    /// <seealso cref="LightingActions.RemoveCallbacks(ILightingActions)" />
+    public interface ILightingActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "MoveLight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveLight(InputAction.CallbackContext context);
     }
 }

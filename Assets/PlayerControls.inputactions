@@ -25,9 +25,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Interact",
+                    "name": "Fire",
                     "type": "Button",
-                    "id": "5e4da62f-fcb3-46d9-b9c1-9eb275353759",
+                    "id": "fadf3ed0-f3d7-4169-b8e2-03aea44dd619",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -202,12 +202,56 @@
                 },
                 {
                     "name": "",
-                    "id": "e8c1a931-efb7-4f4b-85a3-eea0f2b97760",
-                    "path": "<Keyboard>/space",
+                    "id": "97708060-5536-4324-b1c7-4fb5b1a4d82a",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Interact",
+                    "groups": ";Gamepad",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "253b1520-0b15-4d26-a861-9539d2d27546",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7518ff6a-89c6-4a42-9edc-9f757c81e8c3",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Touch",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e30022af-d400-4675-b811-d0ce5b44fa8a",
+                    "path": "<Joystick>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea2a9323-65e7-4f0e-b016-e43c81b3ec83",
+                    "path": "<XRController>/{PrimaryAction}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -726,6 +770,56 @@
                     "action": "TrackedDeviceOrientation",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Lighting",
+            "id": "5984f292-299b-4b12-a07b-6d195eef6ee8",
+            "actions": [
+                {
+                    "name": "MoveLight",
+                    "type": "Value",
+                    "id": "1fe96430-e5db-4a3f-90d2-30a8784ab614",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "QE",
+                    "id": "dbcda0b5-6596-4443-953d-abd6d0c8f572",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveLight",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Negative",
+                    "id": "c43ef1e7-aaa0-4680-9640-65c88fbfc68e",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "MoveLight",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Positive",
+                    "id": "8cd0a9ac-23ce-4259-aff4-76c6e73b64bb",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "MoveLight",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
