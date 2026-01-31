@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image timerDisplay;
     float timerFillPercent;
 
+    public AudioSource source;
+    public AudioPitcherSO testSounds;
+
     void Start()
     {
         if (instance == null)
@@ -39,5 +42,11 @@ public class GameManager : MonoBehaviour
 
         timerFillPercent = currTime / roundDuration;
         timerDisplay.fillAmount = timerFillPercent;
+    }
+
+    [ContextMenu("Test Audio")]
+    public void TestAudio()
+    {
+        testSounds.Play(source);
     }
 }
