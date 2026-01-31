@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,7 +62,7 @@ public class LightingContols : MonoBehaviour
 
         if (lightActions.MoveLight.ReadValue<float>() != 0) 
         {
-            transform.up = new Vector3(1, 0, 0);
+            transform.Rotate(new Vector3(0.0f, 0.0f, -lightActions.MoveLight.ReadValue<float>() * Time.deltaTime * moveSpeed), Space.World);
         }
 
         
