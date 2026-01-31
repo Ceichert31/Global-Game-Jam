@@ -19,6 +19,7 @@ public class PlayerInteractor : MonoBehaviour
     private Ease grabEaseMode = Ease.InOutElastic;
 
     private GameObject heldProp;
+    private IInteractable heldPropData;
 
     private Tweener grabTween;
 
@@ -43,12 +44,12 @@ public class PlayerInteractor : MonoBehaviour
         if (collision.gameObject.layer != interactLayer)
             return;
 
-        if (!collision.gameObject.TryGetComponent(out IInteractable interact))
+        if (!collision.gameObject.TryGetComponent(out heldPropData))
             return;
 
-        PickUpProp(collision.gameObject);
+        heldProp = collision.gameObject;
 
-        interact.Interact();
+        PickUpProp();
     }
 
     /// <summary>
@@ -85,45 +86,41 @@ public class PlayerInteractor : MonoBehaviour
 
             //Execute interact logic, move object to hold pos
             grabTween = heldProp.transform.DOMove(targetPos, grabDuration).SetEase(grabEaseMode);
-        }
-        finally
-        {
+
             canPickUp = false;
             Invoke(nameof(ResetPickupDelay), PickUpDelay);
 
+            heldPropData.Drop();
+        }
+        finally
+        {
             canInteract = false;
             isHolding = false;
             heldProp = null;
+            heldPropData = null;
         }
     }
 
-    private void PickUpProp(GameObject obj)
+    private void PickUpProp()
     {
         if (!canPickUp)
             return;
 
+        heldPropData.PickUp();
+
         canInteract = false;
         isHolding = true;
-        heldProp = obj;
 
-        MoveToPosition(obj, holdPos, Vector2.zero);
-    }
-
-    private void MoveToPosition(GameObject obj, Transform parent, Vector2 endPosition)
-    {
-        grabTween?.Kill();
-
-        obj.transform.SetParent(parent);
-
-        Debug.Log($"End Position: {endPosition}");
+        DOTween.CompleteAll();
+        heldProp.transform.SetParent(holdPos);
 
         //Execute interact logic, move object to hold pos
-        grabTween = obj
-            .transform.DOLocalMove(endPosition, grabDuration)
+        grabTween = heldProp
+            .transform.DOLocalMove(Vector2.zero, grabDuration)
             .SetEase(grabEaseMode)
             .OnComplete(() =>
             {
-                obj.transform.localPosition = endPosition;
+                heldProp.transform.localPosition = Vector2.zero;
             });
     }
 
