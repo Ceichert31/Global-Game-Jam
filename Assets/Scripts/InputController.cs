@@ -6,45 +6,45 @@ public class InputController : MonoBehaviour
     private PlayerControls playerControls;
 
     private PlayerControls.PlayerActions playerActions;
-    private float moveAmount => grid.GetTileSize();
+
+    [SerializeField]
+    private float moveSpeed = 1f;
 
     [SerializeField]
     private Grid grid;
+
+    private Rigidbody2D rb;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
         playerActions = playerControls.Player;
+
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Move(InputAction.CallbackContext ctx)
+    private void FixedUpdate()
     {
-        var newPos =
-            (ctx.ReadValue<Vector2>().normalized * moveAmount)
-            + new Vector2(transform.position.x, transform.position.y);
+        Move();
+    }
 
-        var tileData = grid.GetTileData(newPos);
+    private void Move()
+    {
+        rb.linearVelocity = GetMovementDirection() * moveSpeed;
+    }
 
-        if (tileData == null)
-            return;
-
-        if (tileData.isOccupied)
-            return;
-
-        transform.position = tileData.position;
+    private Vector2 GetMovementDirection()
+    {
+        return playerActions.Move.ReadValue<Vector2>().normalized;
     }
 
     private void OnEnable()
     {
         playerControls.Enable();
-
-        playerActions.Move.performed += Move;
     }
 
     private void OnDisable()
     {
         playerControls.Disable();
-
-        playerActions.Move.performed -= Move;
     }
 }

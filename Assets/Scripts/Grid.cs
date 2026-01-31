@@ -17,12 +17,17 @@ public class Grid : MonoBehaviour
     [SerializeField]
     private bool debug;
 
+    public bool isActive;
+
     public GameObject testObj;
 
     public GameObject obstacleObj;
 
     private void Awake()
     {
+        if (!isActive)
+            return;
+
         for (float i = 0; i < gridWidth; i += gridSize)
         {
             for (float j = 0; j < gridHeight; j += gridSize)
