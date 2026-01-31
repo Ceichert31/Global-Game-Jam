@@ -20,15 +20,10 @@ public class InputController : MonoBehaviour
         grid = GetComponent<Grid>();
     }
 
-    private void Update()
-    {
-        Move();
-    }
-
-    private void Move()
+    private void Move(InputAction.CallbackContext ctx)
     {
         var newPos =
-            (MoveDirection() * moveAmount)
+            (ctx.ReadValue<Vector2>().normalized * moveAmount)
             + new Vector2(transform.position.x, transform.position.y);
 
         bool isOccupied = grid.GetTileData(newPos);
@@ -39,18 +34,17 @@ public class InputController : MonoBehaviour
         transform.position = newPos;
     }
 
-    private Vector2 MoveDirection()
-    {
-        return playerActions.Move.ReadValue<Vector2>().normalized;
-    }
-
     private void OnEnable()
     {
         playerControls.Enable();
+
+        playerActions.Move.performed += Move;
     }
 
     private void OnDisable()
     {
         playerControls.Disable();
+
+        playerActions.Move.performed -= Move;
     }
 }

@@ -457,7 +457,7 @@ MonoBehaviour:
   gridSize: 1
   gridWidth: 20
   gridHeight: 20
-  debug: 0
+  debug: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
