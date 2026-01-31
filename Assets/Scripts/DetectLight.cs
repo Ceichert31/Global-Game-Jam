@@ -6,31 +6,54 @@ using UnityEngine.UIElements;
 public class DetectLight : MonoBehaviour
 {
     [SerializeField]
-    GameObject spotlight;
-    [SerializeField] private int playerLayer;
-    [SerializeField] private int actorLayer;
-    [SerializeField] private int numActors = 1;
-    [SerializeField] float pointsLost = 4.0f;
-    [SerializeField] float pointsGained = 2.0f;
+    private int playerLayer;
+
+    [SerializeField]
+    private int actorLayer;
+
+    [SerializeField]
+    private int propLayer;
+
+    [SerializeField]
+    private int numActors = 1;
+
+    [SerializeField]
+    float pointsLost = 4.0f;
+
+    [SerializeField]
+    float pointsGained = 2.0f;
+
+    [SerializeField]
+    private List<GameObject> objectsInLight = new();
 
     private void Update()
     {
-        // Seeing if things are colliding and where
-        Collider2D spotCollider = spotlight.gameObject.GetComponent<Collider2D>();
-        ContactFilter2D contacts = new ContactFilter2D();
-        contacts.SetLayerMask(Physics2D.GetLayerCollisionMask(spotlight.layer));
-        contacts.useLayerMask = true;
-
-        List<Collider2D> collisions = new List<Collider2D>();
-        int colCount = spotCollider.OverlapCollider(contacts, collisions);
-        int i = 0;
-        foreach (Collider2D col2d in collisions)
+        if (objectsInLight.Count > 0)
         {
-            i++;
-            Debug.Log("HIT" + i + ":" + "(" + col2d.transform.position + ")");
+            AudienceManager.instance.LoseSatisfaction(pointsLost * Time.deltaTime);
         }
+        else
+        {
+            AudienceManager.instance.GainSatisfaction(pointsGained * Time.deltaTime);
+        }
+    }
 
-        CheckActors(collisions);
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Add object
+        if (collision.gameObject.layer != playerLayer)
+            return;
+
+        objectsInLight.Add(collision.gameObject);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //Remove object
+        if (collision.gameObject.layer != playerLayer)
+            return;
+
+        objectsInLight.Remove(collision.gameObject);
     }
 
     void CheckActors(List<Collider2D> collisions)
@@ -54,5 +77,4 @@ public class DetectLight : MonoBehaviour
             AudienceManager.instance.GainSatisfaction(pointsGained * Time.deltaTime);
         }
     }
-
 }
