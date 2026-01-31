@@ -26,12 +26,15 @@ public class InputController : MonoBehaviour
             (ctx.ReadValue<Vector2>().normalized * moveAmount)
             + new Vector2(transform.position.x, transform.position.y);
 
-        bool isOccupied = grid.GetTileData(newPos);
+        var tileData = grid.GetTileData(newPos);
 
-        if (isOccupied)
+        if (tileData == null)
             return;
 
-        transform.position = newPos;
+        if (tileData.isOccupied)
+            return;
+
+        transform.position = tileData.position;
     }
 
     private void OnEnable()

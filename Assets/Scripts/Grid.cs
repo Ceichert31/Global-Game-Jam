@@ -12,18 +12,36 @@ public class Grid : MonoBehaviour
     [SerializeField]
     private float gridHeight = 20f;
 
-    private Dictionary<Vector2, bool> gridData = new();
+    private Dictionary<Vector2, TileData> gridData = new();
 
     [SerializeField]
     private bool debug;
 
+    public GameObject testObj;
+
+    public GameObject obstacleObj;
+
     private void Awake()
     {
-        for (float i = 0; i < gridWidth; i += gridSize)
+        float startX = transform.position.x / 2;
+        float startY = transform.position.y / 2;
+
+        for (float i = startX; i < gridWidth; i += gridSize)
         {
-            for (float j = 0; j < gridHeight; j += gridSize)
+            for (float j = startY; j < gridHeight; j += gridSize)
             {
-                gridData.TryAdd(new Vector2(i, j), false);
+                int value = Random.Range(0, 50);
+
+                if (value <= 40)
+                {
+                    Instantiate(testObj, new Vector2(i, j), Quaternion.identity);
+                    gridData.TryAdd(new Vector2(i, j), new TileData(false, new Vector2(i, j)));
+                }
+                else
+                {
+                    Instantiate(obstacleObj, new Vector2(i, j), Quaternion.identity);
+                    gridData.TryAdd(new Vector2(i, j), new TileData(true, new Vector2(i, j)));
+                }
             }
         }
     }
@@ -33,14 +51,14 @@ public class Grid : MonoBehaviour
     /// </summary>
     /// <param name="pos">The position to check</param>
     /// <returns>Whether the position is occupied</returns>
-    public bool GetTileData(Vector2 pos)
+    public TileData GetTileData(Vector2 pos)
     {
         if (gridData.TryGetValue(pos, out var data))
         {
             return data;
         }
 
-        return false;
+        return null;
     }
 
     private void OnDrawGizmos()
@@ -60,6 +78,18 @@ public class Grid : MonoBehaviour
 
                 previousPos = new Vector2(i, j);
             }
+        }
+    }
+
+    public class TileData
+    {
+        public bool isOccupied;
+        public Vector2 position;
+
+        public TileData(bool occupied, Vector2 pos)
+        {
+            isOccupied = occupied;
+            position = pos;
         }
     }
 }
