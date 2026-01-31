@@ -38,10 +38,29 @@ public class Prop : MonoBehaviour, IInteractable, IProp
 
     private const float DropDelay = 0.2f;
 
+    // Breaking
+    [Header("Breaking Settings")]
+    [Tooltip("How long does the prop have until it turns into rubbish")]
+    [SerializeField]
+    private RangedFloat lifetime;
+    private float lifetimeTimer;
+    [SerializeField]
+    private GameObject rubbish;
+
+    [Header("Audio")]
+    [SerializeField] AudioPitcherSO drops;
+    [SerializeField] AudioPitcherSO pickups;
+    AudioSource source;
+
     public void Start()
     {
         UpdateTimer();
         updateTweenTickTimer = Time.time + updateTweenTick;
+
+        lifetimeTimer = Time.time + Random.Range(lifetime.Min, lifetime.Max);
+        Debug.Log(lifetimeTimer);
+
+        source = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -72,6 +91,14 @@ public class Prop : MonoBehaviour, IInteractable, IProp
                 .SetEase(shakeEaseMode)
                 .SetLoops(-1, LoopType.Yoyo);
         }
+
+        if (lifetimeTimer < Time.time)
+        {
+            // cue breaking and turning into rubbish
+            transform.DOKill();
+            Instantiate(rubbish, transform.position, transform.rotation);
+            Destroy(gameObject);            
+        }
     }
 
     private void ResetActiveStatus() => isMoving = false;
@@ -96,14 +123,21 @@ public class Prop : MonoBehaviour, IInteractable, IProp
         movementTween?.Kill();
         transform.DOKill();
         isHeld = true;
+        pickups.Play(source);
     }
 
     public void Drop()
     {
         Invoke(nameof(ResetIsHeld), DropDelay);
+        drops.Play(source);
     }
 
     private void ResetIsHeld() => isHeld = false;
+
+    public void setRubbish(GameObject rub)
+    {
+        rubbish = rub;
+    }
 }
 
 public interface IInteractable

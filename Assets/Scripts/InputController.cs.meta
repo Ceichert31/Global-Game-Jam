@@ -3,7 +3,10 @@ guid: 7faac8ce4a91a81468b9a03c214df4c3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - grid: {instanceID: 0}
+  - footsteps: {fileID: 11400000, guid: 368b2be8120e9bf4b8c3943f229bc6a0, type: 2}
+  - source: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

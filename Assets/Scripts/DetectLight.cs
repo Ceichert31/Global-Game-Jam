@@ -6,31 +6,67 @@ using UnityEngine.UIElements;
 public class DetectLight : MonoBehaviour
 {
     [SerializeField]
-    GameObject spotlight;
-    [SerializeField] private int playerLayer;
-    [SerializeField] private int actorLayer;
-    [SerializeField] private int numActors = 1;
-    [SerializeField] float pointsLost = 4.0f;
-    [SerializeField] float pointsGained = 2.0f;
+    private int playerLayer;
+
+    [SerializeField]
+    private int actorLayer;
+
+    [SerializeField]
+    private int propLayer;
+
+    [SerializeField]
+    private int numActors = 1;
+
+    [SerializeField]
+    float pointsLost = 4.0f;
+
+    [SerializeField]
+    float pointsGained = 2.0f;
+
+    [SerializeField]
+    private HashSet<GameObject> objectsInLight = new();
 
     private void Update()
     {
-        // Seeing if things are colliding and where
-        Collider2D spotCollider = spotlight.gameObject.GetComponent<Collider2D>();
-        ContactFilter2D contacts = new ContactFilter2D();
-        contacts.SetLayerMask(Physics2D.GetLayerCollisionMask(spotlight.layer));
-        contacts.useLayerMask = true;
-
-        List<Collider2D> collisions = new List<Collider2D>();
-        int colCount = spotCollider.OverlapCollider(contacts, collisions);
-        int i = 0;
-        foreach (Collider2D col2d in collisions)
+        if (ShouldDrainMeter())
         {
-            i++;
-            Debug.Log("HIT" + i + ":" + "(" + col2d.transform.position + ")");
+            AudienceManager.instance.LoseSatisfaction(pointsLost * Time.deltaTime);
+        }
+        else
+        {
+            AudienceManager.instance.GainSatisfaction(pointsGained * Time.deltaTime);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Add object
+        if (collision.gameObject.layer == playerLayer)
+        {
+            objectsInLight.Add(collision.gameObject);
+            return;
         }
 
-        CheckActors(collisions);
+        if (collision.gameObject.layer == propLayer)
+        {
+            objectsInLight.Add(collision.gameObject);
+            return;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //Remove object
+        if (collision.gameObject.layer == playerLayer)
+        {
+            objectsInLight.Remove(collision.gameObject);
+            return;
+        }
+        if (collision.gameObject.layer == propLayer)
+        {
+            objectsInLight.Remove(collision.gameObject);
+            return;
+        }
     }
 
     void CheckActors(List<Collider2D> collisions)
@@ -55,4 +91,21 @@ public class DetectLight : MonoBehaviour
         }
     }
 
+    private bool ShouldDrainMeter()
+    {
+        foreach (var obj in objectsInLight)
+        {
+            if (obj.layer == playerLayer)
+                return true;
+
+            if (!obj.TryGetComponent(out IProp propData))
+                continue;
+
+            if (propData.GetPropStatus())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

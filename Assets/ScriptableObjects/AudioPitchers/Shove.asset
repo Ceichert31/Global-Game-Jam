@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09778ff8d9cfb004bbdc2b59d2a9d8ad, type: 3}
+  m_Name: Shove
+  m_EditorClassIdentifier: 
+  audioClipList:
+  - {fileID: 8300000, guid: da6c85c0caae65d47a08c48cb5b95f79, type: 3}
+  - {fileID: 8300000, guid: 03a187c3a5a10214e8b9d87e9dacd3e0, type: 3}
+  - {fileID: 8300000, guid: 7feed81aa610d5a4093d6ea10dba95ef, type: 3}
+  volume:
+    Min: 0.5
+    Max: 1
+  pitch:
+    Min: 0.7
+    Max: 1.4
