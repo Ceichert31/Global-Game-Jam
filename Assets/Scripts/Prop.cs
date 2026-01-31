@@ -88,7 +88,7 @@ public class Prop : MonoBehaviour, IInteractable, IProp
     public void Interact()
     {
         //Kill all tweens
-        movementTween?.Pause();
+        //movementTween?.Pause();
     }
 }
 
