@@ -23,23 +23,20 @@ public class Grid : MonoBehaviour
 
     private void Awake()
     {
-        float startX = transform.position.x / 2;
-        float startY = transform.position.y / 2;
-
-        for (float i = startX; i < gridWidth; i += gridSize)
+        for (float i = 0; i < gridWidth; i += gridSize)
         {
-            for (float j = startY; j < gridHeight; j += gridSize)
+            for (float j = 0; j < gridHeight; j += gridSize)
             {
                 int value = Random.Range(0, 50);
 
                 if (value <= 40)
                 {
-                    Instantiate(testObj, new Vector2(i, j), Quaternion.identity);
+                    Instantiate(testObj, new Vector2(i, j), Quaternion.identity, transform);
                     gridData.TryAdd(new Vector2(i, j), new TileData(false, new Vector2(i, j)));
                 }
                 else
                 {
-                    Instantiate(obstacleObj, new Vector2(i, j), Quaternion.identity);
+                    Instantiate(obstacleObj, new Vector2(i, j), Quaternion.identity, transform);
                     gridData.TryAdd(new Vector2(i, j), new TileData(true, new Vector2(i, j)));
                 }
             }
@@ -60,6 +57,8 @@ public class Grid : MonoBehaviour
 
         return null;
     }
+
+    public float GetTileSize() => gridSize;
 
     private void OnDrawGizmos()
     {

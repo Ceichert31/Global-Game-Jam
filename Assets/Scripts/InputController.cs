@@ -6,18 +6,15 @@ public class InputController : MonoBehaviour
     private PlayerControls playerControls;
 
     private PlayerControls.PlayerActions playerActions;
+    private float moveAmount => grid.GetTileSize();
 
     [SerializeField]
-    private float moveAmount = 1f;
-
     private Grid grid;
 
     private void Awake()
     {
         playerControls = new PlayerControls();
         playerActions = playerControls.Player;
-
-        grid = GetComponent<Grid>();
     }
 
     private void Move(InputAction.CallbackContext ctx)
