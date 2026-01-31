@@ -13,6 +13,8 @@ public class InputController : MonoBehaviour
     [SerializeField]
     private Grid grid;
 
+    private PlayerInteractor interactor;
+
     private Rigidbody2D rb;
 
     private void Awake()
@@ -21,6 +23,7 @@ public class InputController : MonoBehaviour
         playerActions = playerControls.Player;
 
         rb = GetComponent<Rigidbody2D>();
+        interactor = GetComponentInChildren<PlayerInteractor>();
     }
 
     private void FixedUpdate()
@@ -38,13 +41,22 @@ public class InputController : MonoBehaviour
         return playerActions.Move.ReadValue<Vector2>().normalized;
     }
 
+    private void CallInteract(InputAction.CallbackContext ctx)
+    {
+        interactor.FlagInteract();
+    }
+
     private void OnEnable()
     {
         playerControls.Enable();
+
+        playerActions.Interact.performed += CallInteract;
     }
 
     private void OnDisable()
     {
         playerControls.Disable();
+
+        playerActions.Interact.performed -= CallInteract;
     }
 }

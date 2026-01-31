@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using static AudioPitcherSO;
 
 public class Prop : MonoBehaviour, IInteractable, IProp
 {
+    [Header("Prop Settings")]
     [Tooltip("How long before the prop starts moving again")]
     [SerializeField]
     private RangedFloat changeStateTime;
@@ -17,15 +19,31 @@ public class Prop : MonoBehaviour, IInteractable, IProp
 
     private float changeStateTimer;
 
+    private Tweener movementTween;
+
+    private const float updateTweenTick = 1f;
+    private float updateTweenTickTimer;
+
+    [Header("Animation Settings")]
+    [SerializeField]
+    private float shakeDuration = 3;
+
+    [SerializeField]
+    private float shakeIntensity = 0.5f;
+
+    [SerializeField]
+    private Ease shakeEaseMode = Ease.InOutElastic;
+
     public void Start()
     {
         UpdateTimer();
+        updateTweenTickTimer = Time.time + updateTweenTick;
     }
 
     void Update()
     {
         //Timer runs out
-        if (changeStateTimer <= Time.time)
+        if (changeStateTimer < Time.time)
         {
             isMoving = true;
             Invoke(
@@ -33,6 +51,20 @@ public class Prop : MonoBehaviour, IInteractable, IProp
                 Random.Range(activeStateTime.Min, activeStateTime.Max)
             );
             UpdateTimer();
+        }
+
+        if (updateTweenTickTimer < Time.time && isMoving)
+        {
+            updateTweenTickTimer = Time.time + updateTweenTick;
+
+            //Reset tween
+            movementTween?.Complete();
+
+            //Cache current tween
+            movementTween = transform
+                .DOShakePosition(shakeDuration, shakeIntensity)
+                .SetEase(shakeEaseMode)
+                .SetLoops(-1, LoopType.Yoyo);
         }
         //Do random movement action while isMoving is true (shaking, jumping, rotating)
     }
@@ -55,7 +87,8 @@ public class Prop : MonoBehaviour, IInteractable, IProp
 
     public void Interact()
     {
-        //Move prop to holding position
+        //Kill all tweens
+        movementTween?.Pause();
     }
 }
 
