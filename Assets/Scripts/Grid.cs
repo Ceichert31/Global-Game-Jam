@@ -36,12 +36,12 @@ public class Grid : MonoBehaviour
 
                 if (value <= 40)
                 {
-                    Instantiate(testObj, new Vector2(i, j), Quaternion.identity, transform);
+                    //Instantiate(testObj, new Vector2(i, j), Quaternion.identity, transform);
                     gridData.TryAdd(new Vector2(i, j), new TileData(false, new Vector2(i, j)));
                 }
                 else
                 {
-                    Instantiate(obstacleObj, new Vector2(i, j), Quaternion.identity, transform);
+                    //Instantiate(obstacleObj, new Vector2(i, j), Quaternion.identity, transform);
                     gridData.TryAdd(new Vector2(i, j), new TileData(true, new Vector2(i, j)));
                 }
             }
@@ -78,7 +78,7 @@ public class Grid : MonoBehaviour
         {
             for (float j = 0; j < gridHeight; j += gridSize)
             {
-                Gizmos.DrawLine(previousPos, new Vector2(i, j));
+                Gizmos.DrawCube(new Vector3(i, j), new Vector2(gridSize, gridSize));
 
                 previousPos = new Vector2(i, j);
             }
