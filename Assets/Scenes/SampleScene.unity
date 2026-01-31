@@ -2520,6 +2520,7 @@ GameObject:
   - component: {fileID: 2140285275}
   - component: {fileID: 2140285274}
   - component: {fileID: 2140285276}
+  - component: {fileID: 2140285277}
   m_Layer: 0
   m_Name: SpotlightLightSource
   m_TagString: Untagged
@@ -2627,6 +2628,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 3.5
+--- !u!114 &2140285277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140285273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba3ea93c992b2a841b9627773a901457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spotlight: {fileID: 0}
+  playerLayer: 0
+  actorLayer: 0
+  numActors: 1
+  pointsLost: 4
+  pointsGained: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
