@@ -131,8 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeStateTime:
-    Min: 1
-    Max: 5
+    Min: 5
+    Max: 30
   activeStateTime:
     Min: 3
     Max: 5
