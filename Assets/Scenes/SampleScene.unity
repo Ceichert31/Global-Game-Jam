@@ -1337,7 +1337,6 @@ MonoBehaviour:
   numActors: 1
   pointsLost: 4
   pointsGained: 2
-  objectsInLight: []
 --- !u!1 &1206406390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1770,6 +1769,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7
   grid: {fileID: 1413611123}
+  footsteps: {fileID: 0}
+  source: {fileID: 0}
 --- !u!1001 &1412306615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1882,6 +1883,7 @@ MonoBehaviour:
   debug: 0
   isActive: 1
   propObject: {fileID: 8216714926860384011, guid: 8250194923c1b064aaf8fbbef04e96a3, type: 3}
+  rubbishObject: {fileID: 0}
 --- !u!1 &1427966122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2643,11 +2645,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLayer: 9
   actorLayer: 7
-  propLayer: 8
+  propLayer: 3
   numActors: 1
   pointsLost: 4
   pointsGained: 2
-  objectsInLight: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

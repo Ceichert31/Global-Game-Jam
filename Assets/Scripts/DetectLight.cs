@@ -28,7 +28,7 @@ public class DetectLight : MonoBehaviour
 
     private void Update()
     {
-        if (objectsInLight.Count > 0)
+        if (ShouldDrainMeter())
         {
             AudienceManager.instance.LoseSatisfaction(pointsLost * Time.deltaTime);
         }
@@ -46,20 +46,11 @@ public class DetectLight : MonoBehaviour
             objectsInLight.Add(collision.gameObject);
             return;
         }
-    }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out IProp propData))
+        if (collision.gameObject.layer == propLayer)
         {
-            if (propData.GetPropStatus())
-            {
-                objectsInLight.Add(collision.gameObject);
-            }
-            else
-            {
-                objectsInLight.Remove(collision.gameObject);
-            }
+            objectsInLight.Add(collision.gameObject);
+            return;
         }
     }
 
@@ -71,8 +62,11 @@ public class DetectLight : MonoBehaviour
             objectsInLight.Remove(collision.gameObject);
             return;
         }
-
-        objectsInLight.Remove(collision.gameObject);
+        if (collision.gameObject.layer == propLayer)
+        {
+            objectsInLight.Remove(collision.gameObject);
+            return;
+        }
     }
 
     void CheckActors(List<Collider2D> collisions)
@@ -95,5 +89,23 @@ public class DetectLight : MonoBehaviour
         {
             AudienceManager.instance.GainSatisfaction(pointsGained * Time.deltaTime);
         }
+    }
+
+    private bool ShouldDrainMeter()
+    {
+        foreach (var obj in objectsInLight)
+        {
+            if (obj.layer == playerLayer)
+                return true;
+
+            if (!obj.TryGetComponent(out IProp propData))
+                continue;
+
+            if (propData.GetPropStatus())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
