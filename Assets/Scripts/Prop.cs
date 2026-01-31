@@ -47,6 +47,11 @@ public class Prop : MonoBehaviour, IInteractable, IProp
     [SerializeField]
     private GameObject rubbish;
 
+    [Header("Audio")]
+    [SerializeField] AudioPitcherSO drops;
+    [SerializeField] AudioPitcherSO pickups;
+    AudioSource source;
+
     public void Start()
     {
         UpdateTimer();
@@ -55,6 +60,7 @@ public class Prop : MonoBehaviour, IInteractable, IProp
         lifetimeTimer = Time.time + Random.Range(lifetime.Min, lifetime.Max);
         Debug.Log(lifetimeTimer);
 
+        source = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -117,11 +123,13 @@ public class Prop : MonoBehaviour, IInteractable, IProp
         movementTween?.Kill();
         transform.DOKill();
         isHeld = true;
+        pickups.Play(source);
     }
 
     public void Drop()
     {
         Invoke(nameof(ResetIsHeld), DropDelay);
+        drops.Play(source);
     }
 
     private void ResetIsHeld() => isHeld = false;
