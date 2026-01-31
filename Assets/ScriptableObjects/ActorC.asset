@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09778ff8d9cfb004bbdc2b59d2a9d8ad, type: 3}
+  m_Name: ActorC
+  m_EditorClassIdentifier: 
+  audioClipList:
+  - {fileID: 8300000, guid: fe621e1d106cd85499c93703c640ae71, type: 3}
+  - {fileID: 8300000, guid: 68c587b289581d64494d831be48fe847, type: 3}
+  - {fileID: 8300000, guid: 6b3141297849472428c9d341b78c3892, type: 3}
+  - {fileID: 8300000, guid: 5286100fabeb6b44fa8fe0e3f87618a7, type: 3}
+  - {fileID: 8300000, guid: 4a8d5261fa265424099f0da74cfcae95, type: 3}
+  - {fileID: 8300000, guid: 2eebc793162aa08409ec23c31c97cd5a, type: 3}
+  - {fileID: 8300000, guid: 870137f2e10222d4795ac8925c69ed27, type: 3}
+  - {fileID: 8300000, guid: 258be4e6addd1824f965bcddc724cfd8, type: 3}
+  volume:
+    Min: 0.5
+    Max: 1
+  pitch:
+    Min: 0.7
+    Max: 1.4
