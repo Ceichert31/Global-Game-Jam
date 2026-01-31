@@ -140,9 +140,9 @@ MonoBehaviour:
   shakeIntensity: 0.1
   shakeEaseMode: 25
   lifetime:
-    Min: 0
-    Max: 0
-  rubbish: {fileID: 0}
+    Min: 60
+    Max: 360
+  rubbish: {fileID: 3579429182484514782, guid: 8bb543658fd1ec948b1598f03859a9ae, type: 3}
 --- !u!61 &2382159413634612985
 BoxCollider2D:
   m_ObjectHideFlags: 0

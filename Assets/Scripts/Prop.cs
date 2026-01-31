@@ -54,6 +54,7 @@ public class Prop : MonoBehaviour, IInteractable, IProp
 
         lifetimeTimer = Time.time + Random.Range(lifetime.Min, lifetime.Max);
         Debug.Log(lifetimeTimer);
+
     }
 
     void Update()
@@ -124,6 +125,11 @@ public class Prop : MonoBehaviour, IInteractable, IProp
     }
 
     private void ResetIsHeld() => isHeld = false;
+
+    public void setRubbish(GameObject rub)
+    {
+        rubbish = rub;
+    }
 }
 
 public interface IInteractable

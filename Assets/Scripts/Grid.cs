@@ -27,6 +27,8 @@ public class Grid : MonoBehaviour
 
     [SerializeField]
     private GameObject propObject;
+    [SerializeField]
+    private GameObject rubbishObject;
 
     private void Awake()
     {
