@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Grid : MonoBehaviour
 {
@@ -46,7 +48,7 @@ public class Grid : MonoBehaviour
                 }
                 else
                 {
-                    gridData.TryAdd(new Vector2(i, j), new TileData(true, key));
+                    gridData.TryAdd(new Vector2(i, j), new TileData(false, key));
                 }
             }
         }
@@ -64,6 +66,54 @@ public class Grid : MonoBehaviour
             return data;
         }
         return null;
+    }
+
+    public Vector2? GetClosestTile(Vector2 pos)
+    {
+        //Check around area
+        //Check if occupied
+        Vector2 coordinate = new Vector2(Mathf.FloorToInt(pos.x), Mathf.FloorToInt(pos.y));
+
+        List<TileData> unoccupiedTileList = new();
+
+        for (int i = -1; i < 2; i++)
+        {
+            for (int j = -1; j < 2; j++)
+            {
+                //get list of all points that aren't occupied
+                int x = (int)coordinate.x + i;
+                int y = (int)coordinate.y + j;
+
+                var key = new Vector2(x, y);
+                if (gridData.TryGetValue(key, out TileData data))
+                {
+                    if (data.isOccupied)
+                        continue;
+
+                    unoccupiedTileList.Add(data);
+                }
+            }
+        }
+
+        if (unoccupiedTileList.Count == 0)
+        {
+            return null;
+        }
+
+        float dist = UInt64.MaxValue;
+        Vector2 closestTile = Vector2.zero;
+
+        foreach (var tileData in unoccupiedTileList)
+        {
+            float currentDist = Vector2.Distance(pos, tileData.position);
+
+            if (currentDist < dist)
+            {
+                closestTile = tileData.position;
+            }
+        }
+
+        return closestTile;
     }
 
     public float GetTileSize() => gridSize;

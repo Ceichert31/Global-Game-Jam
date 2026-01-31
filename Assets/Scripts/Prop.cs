@@ -34,6 +34,10 @@ public class Prop : MonoBehaviour, IInteractable, IProp
     [SerializeField]
     private Ease shakeEaseMode = Ease.InOutElastic;
 
+    private bool isHeld;
+
+    private const float DropDelay = 0.2f;
+
     public void Start()
     {
         UpdateTimer();
@@ -42,6 +46,9 @@ public class Prop : MonoBehaviour, IInteractable, IProp
 
     void Update()
     {
+        if (isHeld)
+            return;
+
         //Timer runs out
         if (changeStateTimer < Time.time)
         {
@@ -57,8 +64,7 @@ public class Prop : MonoBehaviour, IInteractable, IProp
         {
             updateTweenTickTimer = Time.time + updateTweenTick;
 
-            //Reset tween
-            movementTween?.Complete();
+            DOTween.CompleteAll();
 
             //Cache current tween
             movementTween = transform
@@ -66,7 +72,6 @@ public class Prop : MonoBehaviour, IInteractable, IProp
                 .SetEase(shakeEaseMode)
                 .SetLoops(-1, LoopType.Yoyo);
         }
-        //Do random movement action while isMoving is true (shaking, jumping, rotating)
     }
 
     private void ResetActiveStatus() => isMoving = false;
@@ -85,16 +90,26 @@ public class Prop : MonoBehaviour, IInteractable, IProp
         return isMoving;
     }
 
-    public void Interact()
+    public void PickUp()
     {
         //Kill all tweens
-        movementTween?.Pause();
+        movementTween?.Kill();
+        transform.DOKill();
+        isHeld = true;
     }
+
+    public void Drop()
+    {
+        Invoke(nameof(ResetIsHeld), DropDelay);
+    }
+
+    private void ResetIsHeld() => isHeld = false;
 }
 
 public interface IInteractable
 {
-    public void Interact();
+    public void PickUp();
+    public void Drop();
 }
 
 public interface IProp

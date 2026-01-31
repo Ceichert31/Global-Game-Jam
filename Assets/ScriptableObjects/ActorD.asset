@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09778ff8d9cfb004bbdc2b59d2a9d8ad, type: 3}
+  m_Name: ActorD
+  m_EditorClassIdentifier: 
+  audioClipList:
+  - {fileID: 8300000, guid: a65cf69a2f7770142802221f256a3e73, type: 3}
+  - {fileID: 8300000, guid: cdd8e1bccae1cef4092596a3a1535ffe, type: 3}
+  - {fileID: 8300000, guid: 12a4106a19c9857478d0b6976637fb8b, type: 3}
+  - {fileID: 8300000, guid: 7cc7676d3bf7f444a990dde6c0cc6fe9, type: 3}
+  - {fileID: 8300000, guid: 8c58b9ef2a4e1ba4d83a32a8d94ff0b7, type: 3}
+  - {fileID: 8300000, guid: f7ba05319ed265f49b993f4a170646e7, type: 3}
+  - {fileID: 8300000, guid: 66a5bd3188661024eb9faf49ab3bac83, type: 3}
+  - {fileID: 8300000, guid: edd12e1ffc9694643bcd18ff7ee81f0b, type: 3}
+  - {fileID: 8300000, guid: 9b5465ebc3f771443ae20ee4e7a41131, type: 3}
+  volume:
+    Min: 0.5
+    Max: 1
+  pitch:
+    Min: 0.7
+    Max: 1.4

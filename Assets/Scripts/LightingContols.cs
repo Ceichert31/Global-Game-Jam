@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.Composites;
-
 
 public class LightingContols : MonoBehaviour
 {
@@ -11,12 +9,13 @@ public class LightingContols : MonoBehaviour
 
     private PlayerControls.LightingActions lightActions;
 
-    
     // Parameters
     [SerializeField]
     Vector2 lightingBoundLeft;
+
     [SerializeField]
     Vector2 lightingBoundRight;
+
     [SerializeField]
     private float moveSpeed = 1f;
 
@@ -53,7 +52,10 @@ public class LightingContols : MonoBehaviour
         // Move direction that is pressed
         if (lightActions.MoveLight.ReadValue<float>() != 0)
         {
-            transform.position = new Vector3(transform.position.x + (lightActions.MoveLight.ReadValue<float>() * moveSpeed), lightingBoundLeft.y);
+            transform.position = new Vector3(
+                transform.position.x + (lightActions.MoveLight.ReadValue<float>() * moveSpeed),
+                lightingBoundLeft.y
+            );
         }
 
         if (transform.position.x < lightingBoundLeft.x)
@@ -64,7 +66,5 @@ public class LightingContols : MonoBehaviour
         {
             transform.position = lightingBoundRight;
         }
-        
     }
-
 }
