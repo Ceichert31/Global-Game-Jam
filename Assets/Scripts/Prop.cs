@@ -38,10 +38,22 @@ public class Prop : MonoBehaviour, IInteractable, IProp
 
     private const float DropDelay = 0.2f;
 
+    // Breaking
+    [Header("Breaking Settings")]
+    [Tooltip("How long does the prop have until it turns into rubbish")]
+    [SerializeField]
+    private RangedFloat lifetime;
+    private float lifetimeTimer;
+    [SerializeField]
+    private GameObject rubbish;
+
     public void Start()
     {
         UpdateTimer();
         updateTweenTickTimer = Time.time + updateTweenTick;
+
+        lifetimeTimer = Time.time + Random.Range(lifetime.Min, lifetime.Max);
+        Debug.Log(lifetimeTimer);
     }
 
     void Update()
@@ -71,6 +83,14 @@ public class Prop : MonoBehaviour, IInteractable, IProp
                 .DOShakePosition(shakeDuration, shakeIntensity)
                 .SetEase(shakeEaseMode)
                 .SetLoops(-1, LoopType.Yoyo);
+        }
+
+        if (lifetimeTimer < Time.time)
+        {
+            // cue breaking and turning into rubbish
+            transform.DOKill();
+            Instantiate(rubbish, transform.position, transform.rotation);
+            Destroy(gameObject);            
         }
     }
 
