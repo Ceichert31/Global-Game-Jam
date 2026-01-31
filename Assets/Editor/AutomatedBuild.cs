@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AutomatedBuild
 {
-    public static void BuildAndroid()
+    public static void BuildWeb()
     {
         string[] scenes = new string[] { "Assets/Scenes/SampleScene.unity" };
 
