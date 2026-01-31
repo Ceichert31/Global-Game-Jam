@@ -3,7 +3,7 @@ name: Build Unity project
 on: [push, pull_request]
 
 jobs:
-  buildForQuest:
+  BuildForWebGL:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
