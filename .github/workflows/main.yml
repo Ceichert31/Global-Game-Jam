@@ -36,10 +36,18 @@ jobs:
         if: always()
         with:
           name: WebGL-Build
-          path: builds/WebGL
+          path: |
+            **/builds/*.html
+            builds/**/*.html
+            builds/**/*.html
+
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: builds/WebGL
+          folder: |
+            **/builds/
+            builds/**/
+            builds/**/
+
