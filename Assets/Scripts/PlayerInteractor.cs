@@ -79,6 +79,7 @@ public class PlayerInteractor : MonoBehaviour
 
             //MoveToPosition(heldProp, null, targetPos);
             grabTween?.Kill();
+            heldProp.transform.DOKill();
 
             heldProp.transform.SetParent(null);
 
@@ -111,7 +112,7 @@ public class PlayerInteractor : MonoBehaviour
         canInteract = false;
         isHolding = true;
 
-        DOTween.CompleteAll();
+        heldProp.transform.DOKill();
         heldProp.transform.SetParent(holdPos);
 
         //Execute interact logic, move object to hold pos

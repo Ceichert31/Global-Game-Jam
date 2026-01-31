@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeStateTime:
-    Min: 7
-    Max: 15
+    Min: 1
+    Max: 5
   activeStateTime:
     Min: 3
     Max: 5

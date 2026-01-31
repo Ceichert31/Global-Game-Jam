@@ -36,6 +36,8 @@ public class Prop : MonoBehaviour, IInteractable, IProp
 
     private bool isHeld;
 
+    private const float DropDelay = 0.2f;
+
     public void Start()
     {
         UpdateTimer();
@@ -92,13 +94,16 @@ public class Prop : MonoBehaviour, IInteractable, IProp
     {
         //Kill all tweens
         movementTween?.Kill();
+        transform.DOKill();
         isHeld = true;
     }
 
     public void Drop()
     {
-        isHeld = false;
+        Invoke(nameof(ResetIsHeld), DropDelay);
     }
+
+    private void ResetIsHeld() => isHeld = false;
 }
 
 public interface IInteractable
