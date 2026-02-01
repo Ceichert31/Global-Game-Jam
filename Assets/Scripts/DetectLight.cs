@@ -78,6 +78,12 @@ public class DetectLight : MonoBehaviour
             objectsInLight.Add(collision.gameObject);
             return;
         }
+
+        if (collision.gameObject.layer == actorLayer)
+        {
+            objectsInLight.Add(collision.gameObject);
+            return;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -89,6 +95,11 @@ public class DetectLight : MonoBehaviour
             return;
         }
         if (collision.gameObject.layer == propLayer)
+        {
+            objectsInLight.Remove(collision.gameObject);
+            return;
+        }
+        if (collision.gameObject.layer == actorLayer)
         {
             objectsInLight.Remove(collision.gameObject);
             return;
@@ -130,6 +141,11 @@ public class DetectLight : MonoBehaviour
             if (propData.GetPropStatus())
             {
                 return true;
+            }
+
+            if (obj.layer == actorLayer)
+            {
+                return false;
             }
         }
         return false;
