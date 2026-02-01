@@ -25,6 +25,9 @@ public class AudienceManager : MonoBehaviour
     private const float TickUpdate = 0.1f;
     private float tweenTimer;
 
+    [SerializeField]
+    private Gradient meterGradient;
+
     void Start()
     {
         if (instance == null)
@@ -48,6 +51,7 @@ public class AudienceManager : MonoBehaviour
     {
         meterFillPercent = currSatisfaction / maxSatisfaction;
         audienceMeter.fillAmount = meterFillPercent;
+        audienceMeter.color = meterGradient.Evaluate(meterFillPercent);
 
         if (currSatisfaction <= 0)
         {

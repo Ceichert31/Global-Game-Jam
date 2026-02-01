@@ -134,11 +134,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeStateTime:
     Min: 5
-    Max: 30
+    Max: 60
   activeStateTime:
-    Min: 3
-    Max: 5
-  shakeDuration: 3
+    Min: 5
+    Max: 10
+  shakeDuration: 0.1
   shakeIntensity: 0.1
   shakeEaseMode: 25
   lifetime:

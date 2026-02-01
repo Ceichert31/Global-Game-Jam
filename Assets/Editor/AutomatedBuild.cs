@@ -6,14 +6,12 @@ public class AutomatedBuild
 {
     public static void BuildWeb()
     {
-        string[] scenes = new string[] { "Assets/Scenes/SampleScene.unity" };
-
-        string buildPath = "builds/WebGL.html";
+        string[] scenes = new string[] { "Assets/Scenes/MainGameScene.unity" };
 
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
         {
             scenes = scenes,
-            locationPathName = buildPath,
+            locationPathName = "builds/WebGL",
             target = BuildTarget.WebGL,
             options = BuildOptions.None,
         };
