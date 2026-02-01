@@ -9,7 +9,7 @@ Stage Crew is a single-player arcade-strategy game where you manage the chaos of
 ## Credits
 
 [Ayden Brumley](https://www.linkedin.com/in/aydenbrumley/) : Producer
-[Max Bouquot](https://www.google.com) : Art
+[Max Bouquot](https://www.linkedin.com/in/mathilde-bouquot-037419180/) : Art
 [Chris Eichert](https://www.linkedin.com/in/christophereichert/) : Programming
 [Isa Flaherty](https://www.linkedin.com/in/isa-flaherty/) : Design & Programming
 [Nick Gushard](https://www.linkedin.com/in/nicholasgushard/) : Art
