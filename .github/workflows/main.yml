@@ -42,3 +42,12 @@ jobs:
         with:
           branch: gh-pages
           folder: builds/WebGL 
+
+      - name: List Build Output
+        run: |
+          echo "Contents of workspace:"
+          ls -la
+          echo "Contents of builds (if exists):"
+          ls -la builds/ || echo "builds/ doesn't exist"
+          echo "Searching for build files:"
+          find . -name "*.html" -o -name "Build" -type d
