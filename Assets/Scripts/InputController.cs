@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,11 +19,16 @@ public class InputController : MonoBehaviour
     private Rigidbody2D rb;
 
     //footsteps
-    [SerializeField] AudioPitcherSO footsteps;
-    [SerializeField] AudioSource source;
+    [SerializeField]
+    AudioPitcherSO footsteps;
+
+    [SerializeField]
+    AudioSource source;
     float audioTimer = 0.0f;
     float footstepInterval = 2.0f;
     bool isMoving = false;
+
+    private SpriteRenderer characterSprite;
 
     private void Awake()
     {
@@ -31,6 +37,7 @@ public class InputController : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         interactor = GetComponentInChildren<PlayerInteractor>();
+        characterSprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -52,6 +59,47 @@ public class InputController : MonoBehaviour
         {
             audioTimer = 0.0f;
         }
+    }
+
+    Tweener flipTween;
+
+    [SerializeField]
+    private float flipDuration = 0.3f;
+
+    [SerializeField]
+    private Ease flipEase = Ease.Linear;
+
+    private void Update()
+    {
+        //Moving left
+        if (GetMovementDirection().x < 0)
+        {
+            flipTween?.Kill(true);
+            //characterSprite.flipX = true;
+            flipTween = characterSprite
+                .transform.DOLocalRotate(new Vector3(0, 180, 0), flipDuration)
+                .SetEase(flipEase);
+        }
+        else if (GetMovementDirection().x > 0)
+        {
+            flipTween?.Kill(true);
+            //characterSprite.flipX = false;
+            flipTween = characterSprite
+                .transform.DOLocalRotate(new Vector3(0, 0, 0), flipDuration)
+                .SetEase(flipEase);
+        }
+
+        /* //Shake player
+         if (isMoving)
+         {
+             characterSprite
+                 .transform.DOLocalRotate(new Vector3(0, 0, 5), flipDuration)
+                 .OnComplete(() =>
+                 {
+                     characterSprite.transform.DOLocalRotate(new Vector3(0, 0, -5), flipDuration);
+                 })
+                 .SetLoops(-1, LoopType.Yoyo);
+         }*/
     }
 
     private void Move()

@@ -51,7 +51,7 @@ public class AudienceManager : MonoBehaviour
     {
         meterFillPercent = currSatisfaction / maxSatisfaction;
         audienceMeter.fillAmount = meterFillPercent;
-        audienceMeter.color = meterGradient.Evaluate(meterFillPercent);
+        //audienceMeter.color = meterGradient.Evaluate(meterFillPercent);
 
         if (currSatisfaction <= 0)
         {
