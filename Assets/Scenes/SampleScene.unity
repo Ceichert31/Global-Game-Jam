@@ -1337,6 +1337,7 @@ MonoBehaviour:
   numActors: 1
   pointsLost: 4
   pointsGained: 2
+  noPropTimeBeforeDecay: 3
 --- !u!1 &1206406390
 GameObject:
   m_ObjectHideFlags: 0
@@ -2726,6 +2727,7 @@ GameObject:
   m_Component:
   - component: {fileID: 161554219011479468}
   - component: {fileID: 2440139670371160188}
+  - component: {fileID: 6594237384705561169}
   m_Layer: 0
   m_Name: Spotlight
   m_TagString: Untagged
@@ -2733,6 +2735,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6594237384705561169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6594237384705561168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb5214a2494e5447bba69c6e171ec77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightingBoundLeft: 27
+  lightingBoundRight: -27
+  moveSpeed: 10
 --- !u!114 &7432500793872685660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2751,6 +2768,7 @@ MonoBehaviour:
   numActors: 1
   pointsLost: 4
   pointsGained: 2
+  noPropTimeBeforeDecay: 3
 --- !u!114 &7432500793872685661
 MonoBehaviour:
   m_ObjectHideFlags: 0
