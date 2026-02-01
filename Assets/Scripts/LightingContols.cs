@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Tutorial_System.Scripts.EventChannel;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -10,6 +11,9 @@ public class LightingContols : MonoBehaviour
     private PlayerControls lightControls;
 
     private PlayerControls.LightingActions lightActions;
+
+    [SerializeField]
+    private VoidEventChannel lightMoveCheck;
 
     // Parameters
     [SerializeField]
@@ -71,6 +75,8 @@ public class LightingContols : MonoBehaviour
                 ),
                 Space.World
             );
+
+            lightMoveCheck?.CallEvent();
 
             // Get current rotation in -180 to 180 range
             float currentZ = transform.eulerAngles.z;
