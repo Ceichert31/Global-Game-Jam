@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -55,6 +56,17 @@ public class AudienceManager : MonoBehaviour
 
     public bool inCombo;
 
+    public int scoreGain = 1000;
+
+    [SerializeField]
+    private RectTransform endScreen;
+
+    [SerializeField]
+    private TextMeshProUGUI scoreText;
+
+    private int score;
+    private int itemsPickedUp;
+
     void Start()
     {
         if (instance == null)
@@ -82,8 +94,14 @@ public class AudienceManager : MonoBehaviour
         if (comboTimer > comboTime && !inCombo)
         {
             inCombo = true;
+            score += scoreGain;
             comboYaySound.Play(source);
         }
+    }
+
+    public void PickedUpItem()
+    {
+        itemsPickedUp++;
     }
 
     void UpdateSatisfaction()
@@ -94,9 +112,38 @@ public class AudienceManager : MonoBehaviour
 
         if (currSatisfaction <= 0)
         {
-            //End game
-            SceneManager.LoadSceneAsync("GameOverScreen");
+            EndGame();
         }
+    }
+
+    private void EndGame()
+    {
+        //Close curtain,
+        //Display score
+        scoreText.text = $"score: {score} \n items picked up: {itemsPickedUp}";
+
+        endScreen.DOScaleY(1, 0.3f);
+
+        StartCoroutine(SlowTime());
+
+        //End game
+        //SceneManager.LoadSceneAsync("GameOverScreen");
+    }
+
+    private IEnumerator SlowTime()
+    {
+        float duration = 0.5f;
+        float elapsedTime = 0;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+
+            Time.timeScale = Mathf.Lerp(1, 0, elapsedTime / duration);
+
+            yield return null;
+        }
+        Time.timeScale = 0;
     }
 
     void UpdateParticleTimer(float dt)

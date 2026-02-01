@@ -103,6 +103,8 @@ public class PlayerInteractor : MonoBehaviour
 
         pickupCheck.CallEvent();
 
+        AudienceManager.instance.PickedUpItem();
+
         heldPropData.PickUp();
 
         canInteract = false;
