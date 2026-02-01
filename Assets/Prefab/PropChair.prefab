@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 8781413307445000511}
   - component: {fileID: 2382159413634612985}
   - component: {fileID: 5454314339960398499}
+  - component: {fileID: 4866430192789216869}
   m_Layer: 3
   m_Name: PropChair
   m_TagString: Untagged
@@ -111,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8216714926860384011}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.1, y: -0.05, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_ConstrainProportionsScale: 1
@@ -287,3 +288,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4866430192789216869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8216714926860384011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f48ccb66c4de624ca254c07cb85621d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridBounds: {x: 23, y: 8}
+  waitToWander: 5
+  moveSpeed: 5
+  moveEase: 1
+  canMove: 0
