@@ -24,6 +24,12 @@ public class AutomatedBuild
         PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Disabled;
         PlayerSettings.WebGL.decompressionFallback = true;
 
+        PlayerSettings.stripEngineCode = false;
+        PlayerSettings.SetManagedStrippingLevel(
+            BuildTargetGroup.WebGL,
+            ManagedStrippingLevel.Minimal
+        );
+
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
 
         if (report.summary.result == BuildResult.Succeeded)
