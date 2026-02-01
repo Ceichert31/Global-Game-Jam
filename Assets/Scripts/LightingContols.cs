@@ -1,6 +1,6 @@
-using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class LightingContols : MonoBehaviour
@@ -60,24 +60,29 @@ public class LightingContols : MonoBehaviour
         //    //);
         //}
 
-        if (lightActions.MoveLight.ReadValue<float>() != 0) 
+        if (lightActions.MoveLight.ReadValue<float>() != 0)
         {
-            transform.Rotate(new Vector3(0.0f, 0.0f, -lightActions.MoveLight.ReadValue<float>() * Time.deltaTime * moveSpeed), Space.World);
+            transform.Rotate(
+                new Vector3(
+                    0.0f,
+                    0.0f,
+                    -lightActions.MoveLight.ReadValue<float>() * Time.deltaTime * moveSpeed
+                ),
+                Space.World
+            );
         }
 
-        
-
-        //if (transform.position.x < lightingBoundLeft) // If too far left
-        //{
-        //    //transform.position = lightingBoundLeft;
-        //}
-        //else if (transform.position.x > lightingBoundRight) // if too far right
-        //{
-        //    //transform.position = lightingBoundRight;
-        //}
+        if (transform.eulerAngles.x > lightingBoundLeft) // If too far left
+        {
+            transform.eulerAngles = new Vector3(0, 0, lightingBoundLeft);
+        }
+        else if (transform.eulerAngles.x < lightingBoundRight) // if too far right
+        {
+            transform.eulerAngles = new Vector3(0, 0, lightingBoundRight);
+        }
     }
 }
 
-/** 
+/**
  * Setting up local rotation around pivot
  */

@@ -57,49 +57,42 @@ public class PlayerInteractor : MonoBehaviour
     /// </summary>
     private void DropCurrentProp()
     {
-        try
-        {
-            if (!isHolding)
-                return;
+        if (!isHolding)
+            return;
 
-            if (heldProp == null)
-                return;
+        if (heldProp == null)
+            return;
 
-            //Handle dropping logic
-            //Will need grid here
+        //Handle dropping logic
+        //Will need grid here
 
-            var closetTile = grid.GetClosestTile(
-                new Vector2(transform.position.x, transform.position.y)
-            );
+        var closetTile = grid.GetClosestTile(
+            new Vector2(transform.position.x, transform.position.y)
+        );
 
-            if (closetTile == null)
-                return;
+        if (closetTile == null)
+            return;
 
-            Vector2 targetPos = (Vector2)closetTile;
+        Vector2 targetPos = (Vector2)closetTile;
 
-            //MoveToPosition(heldProp, null, targetPos);
-            grabTween?.Kill();
-            heldProp.transform.DOKill();
+        //MoveToPosition(heldProp, null, targetPos);
+        grabTween?.Kill();
+        heldProp.transform.DOKill();
 
-            heldProp.transform.SetParent(null);
+        heldProp.transform.SetParent(null);
 
-            Debug.Log($"End Position: {targetPos}");
+        //Execute interact logic, move object to hold pos
+        grabTween = heldProp.transform.DOMove(targetPos, grabDuration).SetEase(grabEaseMode);
 
-            //Execute interact logic, move object to hold pos
-            grabTween = heldProp.transform.DOMove(targetPos, grabDuration).SetEase(grabEaseMode);
+        canPickUp = false;
+        Invoke(nameof(ResetPickupDelay), PickUpDelay);
 
-            canPickUp = false;
-            Invoke(nameof(ResetPickupDelay), PickUpDelay);
+        heldPropData.Drop();
 
-            heldPropData.Drop();
-        }
-        finally
-        {
-            canInteract = false;
-            isHolding = false;
-            heldProp = null;
-            heldPropData = null;
-        }
+        canInteract = false;
+        isHolding = false;
+        heldProp = null;
+        heldPropData = null;
     }
 
     private void PickUpProp()

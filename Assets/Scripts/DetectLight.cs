@@ -24,10 +24,36 @@ public class DetectLight : MonoBehaviour
     float pointsGained = 2.0f;
 
     [SerializeField]
+    private float noPropTimeBeforeDecay = 3f;
+
+    private float emptySetTimer;
+
+    [SerializeField]
     private HashSet<GameObject> objectsInLight = new();
+
+    private void Start()
+    {
+        emptySetTimer = noPropTimeBeforeDecay;
+    }
 
     private void Update()
     {
+        //Timer for if the set is empty, start losing score
+        if (objectsInLight.Count == 0)
+        {
+            emptySetTimer -= Time.deltaTime;
+            if (emptySetTimer <= 0)
+            {
+                AudienceManager.instance.LoseSatisfaction(pointsLost * Time.deltaTime);
+                return;
+            }
+        }
+        else
+        {
+            //Otherwise reset timer
+            emptySetTimer = noPropTimeBeforeDecay;
+        }
+
         if (ShouldDrainMeter())
         {
             AudienceManager.instance.LoseSatisfaction(pointsLost * Time.deltaTime);

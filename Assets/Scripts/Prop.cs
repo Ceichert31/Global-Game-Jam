@@ -44,13 +44,19 @@ public class Prop : MonoBehaviour, IInteractable, IProp
     [SerializeField]
     private RangedFloat lifetime;
     private float lifetimeTimer;
+
     [SerializeField]
     private GameObject rubbish;
 
     [Header("Audio")]
-    [SerializeField] AudioPitcherSO drops;
-    [SerializeField] AudioPitcherSO pickups;
+    [SerializeField]
+    AudioPitcherSO drops;
+
+    [SerializeField]
+    AudioPitcherSO pickups;
     AudioSource source;
+
+    private WanderToPoint wander;
 
     public void Start()
     {
@@ -61,6 +67,7 @@ public class Prop : MonoBehaviour, IInteractable, IProp
         Debug.Log(lifetimeTimer);
 
         source = GetComponent<AudioSource>();
+        wander = GetComponent<WanderToPoint>();
     }
 
     void Update()
@@ -76,6 +83,7 @@ public class Prop : MonoBehaviour, IInteractable, IProp
                 nameof(ResetActiveStatus),
                 Random.Range(activeStateTime.Min, activeStateTime.Max)
             );
+            wander.SetCanMove(true);
             UpdateTimer();
         }
 
@@ -83,7 +91,7 @@ public class Prop : MonoBehaviour, IInteractable, IProp
         {
             updateTweenTickTimer = Time.time + updateTweenTick;
 
-            DOTween.CompleteAll();
+            transform.DOKill();
 
             //Cache current tween
             movementTween = transform
@@ -97,11 +105,15 @@ public class Prop : MonoBehaviour, IInteractable, IProp
             // cue breaking and turning into rubbish
             transform.DOKill();
             Instantiate(rubbish, transform.position, transform.rotation);
-            Destroy(gameObject);            
+            Destroy(gameObject);
         }
     }
 
-    private void ResetActiveStatus() => isMoving = false;
+    private void ResetActiveStatus()
+    {
+        isMoving = false;
+        wander.SetCanMove(false);
+    }
 
     private void UpdateTimer()
     {
