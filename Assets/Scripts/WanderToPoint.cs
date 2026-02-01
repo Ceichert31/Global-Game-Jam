@@ -67,6 +67,16 @@ public class WanderToPoint : MonoBehaviour
         rb.velocity = moveDirection * moveSpeed;
     }
 
+    public Vector2 getMoveDirection()
+    {
+        return moveDirection;
+    }
+
+    public bool getMove()
+    {
+        return isCurrentlyMoving;
+    }
+
     private void StartNewMovement()
     {
         targetPoint = PickPoint();
