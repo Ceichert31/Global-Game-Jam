@@ -5959,7 +5959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 132893829112061892, guid: a2ef358712f579c4d85a4b0dcb254f18, type: 3}
       propertyPath: gridBoundsMin.y
-      value: -2.47
+      value: -1.36
       objectReference: {fileID: 0}
     - target: {fileID: 3378373468313477002, guid: a2ef358712f579c4d85a4b0dcb254f18, type: 3}
       propertyPath: m_Enabled
