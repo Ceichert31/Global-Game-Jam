@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameSceneTxt: 
-  StartSceneTxt: 
+  StartSceneTxt: TitleScreen
   Startstuff: {fileID: 0}
   Creditstuff: {fileID: 0}
 --- !u!1 &442511751
@@ -405,10 +405,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83ea81e2b44c7d44483bc240f0c61a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudienceHappiness: 0
+  AudienceHappiness: 100
   BGImage: {fileID: 1503922028}
   RecapText: {fileID: 0}
-  StandingOvation: {fileID: 21300000, guid: 9ffa073dfff03a749b84009d97bb37c5, type: 3}
+  StandingOvation: {fileID: 21300000, guid: 91233f33816393f47bc55cad5a61805b, type: 3}
   WhatAShow: {fileID: 0}
   ChaoticSucess: {fileID: 0}
   CompleteDisaster: {fileID: 0}
@@ -716,7 +716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1816379136
 RectTransform:
   m_ObjectHideFlags: 0
