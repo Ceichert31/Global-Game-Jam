@@ -6,7 +6,12 @@ public class AutomatedBuild
 {
     public static void BuildWeb()
     {
-        string[] scenes = new string[] { "Assets/Scenes/MainGameScene.unity" };
+        string[] scenes = new string[]
+        {
+            "Assets/Scenes/TitleScreen.unity",
+            "Assets/Scenes/MainGameScene.unity",
+            "Assets/Scenes/GameOverScreen.unity",
+        };
 
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
         {
