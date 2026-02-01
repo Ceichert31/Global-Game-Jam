@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,8 +13,16 @@ public class AudienceManager : MonoBehaviour
     float currSatisfaction = 75.0f;
 
     //UI
-    [SerializeField] Image audienceMeter;
+    [SerializeField]
+    Image audienceMeter;
+
+    [SerializeField]
+    private RectTransform audienceMeterObj;
+
     float meterFillPercent;
+
+    private const float TickUpdate = 0.1f;
+    private float tweenTimer;
 
     void Start()
     {
@@ -25,6 +34,8 @@ public class AudienceManager : MonoBehaviour
         {
             Destroy(this);
         }
+
+        tweenTimer = Time.time + TickUpdate;
     }
 
     void Update()
@@ -54,6 +65,9 @@ public class AudienceManager : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private float shakeAmount = 0.5f;
+
     public void LoseSatisfaction(float s)
     {
         currSatisfaction -= s;
@@ -62,6 +76,13 @@ public class AudienceManager : MonoBehaviour
         if (currSatisfaction < 0.0f)
         {
             currSatisfaction = 0.0f;
+        }
+
+        if (tweenTimer < Time.time)
+        {
+            tweenTimer = Time.time + TickUpdate;
+            audienceMeterObj.DOComplete();
+            audienceMeterObj.DOShakeRotation(0.1f, shakeAmount);
         }
     }
 }

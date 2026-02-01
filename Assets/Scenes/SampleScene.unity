@@ -1884,6 +1884,10 @@ PrefabInstance:
       propertyPath: audienceMeter
       value: 
       objectReference: {fileID: 1858737930}
+    - target: {fileID: 3388178516490742526, guid: 9aad026afd1014b4293b098e2126674c, type: 3}
+      propertyPath: audienceMeterObj
+      value: 
+      objectReference: {fileID: 1858737929}
     - target: {fileID: 4939567484062267023, guid: 9aad026afd1014b4293b098e2126674c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
