@@ -23,7 +23,7 @@ public class PickRanSound : MonoBehaviour
         {
             AudioClip clip = PickSound();
             source.PlayOneShot(clip);
-            timer = clip.length;
+            timer = clip.length + Time.time;
         }
         
     }
