@@ -29,12 +29,31 @@ public class AudienceManager : MonoBehaviour
     private Gradient meterGradient;
 
     //particles
-    [SerializeField] List<ParticleSystem> happyEffects;
-    [SerializeField] List<ParticleSystem> madEffects;
+    [SerializeField]
+    List<ParticleSystem> happyEffects;
+
+    [SerializeField]
+    List<ParticleSystem> madEffects;
     float effectTimerMax = 4.0f;
     float effectTimerMin = 1.0f;
     float effectTimer;
     float currEffectTimer;
+
+    [SerializeField]
+    private float comboTime = 7.5f;
+
+    [SerializeField]
+    private float comboTimer;
+
+    [SerializeField]
+    private AudioPitcherSO comboYaySound;
+
+    [SerializeField]
+    private AudioPitcherSO comboLostSound;
+
+    private AudioSource source;
+
+    public bool inCombo;
 
     void Start()
     {
@@ -47,6 +66,8 @@ public class AudienceManager : MonoBehaviour
             Destroy(this);
         }
 
+        source = GetComponent<AudioSource>();
+
         tweenTimer = Time.time + TickUpdate;
         SetParticleTimer();
     }
@@ -55,6 +76,14 @@ public class AudienceManager : MonoBehaviour
     {
         UpdateSatisfaction();
         UpdateParticleTimer(Time.deltaTime);
+
+        comboTimer += Time.deltaTime;
+
+        if (comboTimer > comboTime && !inCombo)
+        {
+            inCombo = true;
+            comboYaySound.Play(source);
+        }
     }
 
     void UpdateSatisfaction()
@@ -116,12 +145,22 @@ public class AudienceManager : MonoBehaviour
             audienceMeterObj.DOComplete();
             audienceMeterObj.DOShakeRotation(0.1f, shakeAmount);
         }
+
+        comboTimer = 0;
+        if (inCombo)
+        {
+            inCombo = false;
+            comboLostSound.Play(source);
+        }
     }
 
     void PlayParticleEffect()
     {
         if (currSatisfaction <= 50.0f)
         {
+            if (happyEffects.Count == 0)
+                return;
+
             //happy effect
             int index = Random.Range(0, happyEffects.Count);
             happyEffects[index].Play();
@@ -129,6 +168,9 @@ public class AudienceManager : MonoBehaviour
         else
         {
             //sad effect
+            if (madEffects.Count == 0)
+                return;
+
             int index = Random.Range(0, madEffects.Count);
             madEffects[index].Play();
         }
