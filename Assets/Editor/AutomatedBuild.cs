@@ -16,6 +16,10 @@ public class AutomatedBuild
             options = BuildOptions.None,
         };
 
+        PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Disabled;
+        PlayerSettings.WebGL.decompressionFallback = true;
+        PlayerSettings.WebGL.template = "PROJECT:Default";
+
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
 
         if (report.summary.result == BuildResult.Succeeded)
