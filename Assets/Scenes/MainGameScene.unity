@@ -4898,7 +4898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: checkCompleteDelay
-      value: 7.5
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: _canAdvanceTutorial
