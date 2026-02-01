@@ -6,7 +6,10 @@ public class WanderToPoint : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField]
-    private Vector2 gridBounds;
+    private Vector2 gridBoundsMax;
+
+    [SerializeField]
+    private Vector2 gridBoundsMin;
 
     [SerializeField]
     private float waitToWander = 5.0f;
@@ -96,7 +99,10 @@ public class WanderToPoint : MonoBehaviour
 
     private Vector2 PickPoint()
     {
-        Vector2 point = new Vector2(Random.Range(0, gridBounds.x), Random.Range(0, gridBounds.y));
+        Vector2 point = new Vector2(
+            Random.Range(gridBoundsMin.x, gridBoundsMax.x),
+            Random.Range(gridBoundsMin.y, gridBoundsMax.y)
+        );
 
         return point;
     }
@@ -123,26 +129,28 @@ public class WanderToPoint : MonoBehaviour
 
     private void OnDisable()
     {
-        // Stop movement when disabled
         if (rb != null)
         {
             rb.velocity = Vector2.zero;
         }
     }
 
-    // Optional: Visualize in editor
     private void OnDrawGizmosSelected()
     {
-        // Draw grid bounds
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(gridBounds / 2, gridBounds);
+        // Calculate center and size
+        Vector2 center = (gridBoundsMin + gridBoundsMax) / 2f;
+        Vector2 size = gridBoundsMax - gridBoundsMin;
 
-        // Draw current target
-        if (isCurrentlyMoving && Application.isPlaying)
+        // Draw bounds rectangle
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(center, size);
+
+        // Draw current movement target
+        if (Application.isPlaying && isCurrentlyMoving)
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawLine(transform.position, targetPoint);
-            Gizmos.DrawWireSphere(targetPoint, 0.5f);
+            Gizmos.DrawSphere(targetPoint, 0.3f);
         }
     }
 }
