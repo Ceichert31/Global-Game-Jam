@@ -28,6 +28,14 @@ public class AudienceManager : MonoBehaviour
     [SerializeField]
     private Gradient meterGradient;
 
+    //particles
+    [SerializeField] List<ParticleSystem> happyEffects;
+    [SerializeField] List<ParticleSystem> madEffects;
+    float effectTimerMax = 4.0f;
+    float effectTimerMin = 1.0f;
+    float effectTimer;
+    float currEffectTimer;
+
     void Start()
     {
         if (instance == null)
@@ -40,11 +48,13 @@ public class AudienceManager : MonoBehaviour
         }
 
         tweenTimer = Time.time + TickUpdate;
+        SetParticleTimer();
     }
 
     void Update()
     {
         UpdateSatisfaction();
+        UpdateParticleTimer(Time.deltaTime);
     }
 
     void UpdateSatisfaction()
@@ -57,6 +67,17 @@ public class AudienceManager : MonoBehaviour
         {
             //End game
             SceneManager.LoadSceneAsync("GameOverScreen");
+        }
+    }
+
+    void UpdateParticleTimer(float dt)
+    {
+        currEffectTimer -= dt;
+
+        if (currEffectTimer <= 0)
+        {
+            PlayParticleEffect();
+            SetParticleTimer();
         }
     }
 
@@ -95,5 +116,27 @@ public class AudienceManager : MonoBehaviour
             audienceMeterObj.DOComplete();
             audienceMeterObj.DOShakeRotation(0.1f, shakeAmount);
         }
+    }
+
+    void PlayParticleEffect()
+    {
+        if (currSatisfaction <= 50.0f)
+        {
+            //happy effect
+            int index = Random.Range(0, happyEffects.Count);
+            happyEffects[index].Play();
+        }
+        else
+        {
+            //sad effect
+            int index = Random.Range(0, madEffects.Count);
+            madEffects[index].Play();
+        }
+    }
+
+    void SetParticleTimer()
+    {
+        effectTimer = Random.Range(effectTimerMin, effectTimerMax);
+        currEffectTimer = effectTimer;
     }
 }
