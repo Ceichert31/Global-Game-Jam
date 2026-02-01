@@ -766,7 +766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac95f48dbe13afd4fa779f449be089e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameSceneTxt: MainGameScene
+  GameSceneTxt: ComicScene
   StartSceneTxt: 
   Startstuff: {fileID: 1634581108}
   Creditstuff: {fileID: 1882777102}
