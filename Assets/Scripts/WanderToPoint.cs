@@ -1,76 +1,152 @@
 using System.Collections;
 using System.Collections.Generic;
-using DG.Tweening;
 using UnityEngine;
 
 public class WanderToPoint : MonoBehaviour
 {
+    [Header("Movement Settings")]
     [SerializeField]
-    Vector2 gridBounds;
+    private Vector2 gridBounds;
 
     [SerializeField]
-    float waitToWander = 5.0f;
+    private float waitToWander = 5.0f; // Wait time between movements
 
     [SerializeField]
-    float moveSpeed = 5.0f;
+    private float moveDuration = 3.0f; // How long to move for
 
     [SerializeField]
-    Ease moveEase = Ease.Linear;
+    private float moveSpeed = 5.0f;
 
-    private float moveTimer;
+    [Header("Avoidance")]
+    [SerializeField]
+    private Vector2 avoidPoint;
 
     [SerializeField]
+    private float avoidDistance = 5f;
+
+    [SerializeField]
+    private int maxIterations = 500;
+
+    private Rigidbody2D rb;
     private bool canMove = true;
-    private Tweener moveTween;
+    private bool isCurrentlyMoving = false;
+
+    private Vector2 targetPoint;
+    private Vector2 moveDirection;
+    private float movementEndTime;
+    private float nextMoveTime;
 
     void Start()
     {
-        moveTimer = Time.time + waitToWander;
+        rb = GetComponent<Rigidbody2D>();
+        nextMoveTime = Time.time + waitToWander;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!canMove)
             return;
 
-        // If has light, then don't move
-        // IF LIGHT THEN RETURN
-
-        if (moveTimer < Time.time)
+        if (Vector2.Distance(targetPoint, (Vector2)transform.position) < 0.5f)
         {
-            MoveToRandomPoint();
-            moveTimer = Time.time + waitToWander;
+            targetPoint = PickPoint();
+        }
+
+        // Check if it's time to start a new movement
+        if (!isCurrentlyMoving && Time.time >= nextMoveTime)
+        {
+            StartNewMovement();
+        }
+
+        // Check if current movement should stop
+        if (isCurrentlyMoving && Time.time >= movementEndTime)
+        {
+            StopMovement();
         }
     }
 
-    // Pick random point based on the grid size
-    Vector2 PickPoint()
+    private void FixedUpdate()
     {
-        // Return random number based off min/max
-        return new Vector2(Random.Range(0, gridBounds.x), Random.Range(0, gridBounds.y));
+        if (!canMove || !isCurrentlyMoving)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
+        // Apply velocity towards target
+        rb.velocity = moveDirection * moveSpeed;
     }
 
-    private void MoveToRandomPoint()
+    private void StartNewMovement()
     {
-        moveTween?.Kill();
+        targetPoint = PickPoint();
+        moveDirection = (targetPoint - (Vector2)transform.position).normalized;
 
-        Vector2 targetPoint = PickPoint();
-        moveTween = transform.DOMove(targetPoint, moveSpeed).SetEase(moveEase);
+        isCurrentlyMoving = true;
+        movementEndTime = Time.time + moveDuration;
     }
 
-    public void SetCanMove(bool canMove)
+    private void StopMovement()
     {
-        this.canMove = canMove;
+        isCurrentlyMoving = false;
+        rb.velocity = Vector2.zero;
+
+        nextMoveTime = Time.time + waitToWander;
+    }
+
+    private Vector2 PickPoint()
+    {
+        Vector2 point = new Vector2(Random.Range(0, gridBounds.x), Random.Range(0, gridBounds.y));
+
+        return point;
+    }
+
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+
         if (!canMove)
         {
-            moveTween?.Kill();
+            StopMovement();
         }
     }
 
-    private void OnDestroy()
+    public void SetRbKinematic(bool isKinematic)
     {
-        moveTween?.Kill();
-        transform.DOKill();
+        rb.isKinematic = isKinematic;
+
+        if (isKinematic)
+        {
+            StopMovement();
+        }
+    }
+
+    private void OnDisable()
+    {
+        // Stop movement when disabled
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+        }
+    }
+
+    // Optional: Visualize in editor
+    private void OnDrawGizmosSelected()
+    {
+        // Draw grid bounds
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(gridBounds / 2, gridBounds);
+
+        // Draw avoid zone
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(avoidPoint, avoidDistance);
+
+        // Draw current target
+        if (isCurrentlyMoving && Application.isPlaying)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(transform.position, targetPoint);
+            Gizmos.DrawWireSphere(targetPoint, 0.5f);
+        }
     }
 }

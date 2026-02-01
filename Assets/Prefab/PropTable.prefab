@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 2382159413634612985}
   - component: {fileID: 5454314339960398499}
   - component: {fileID: 4866430192789216869}
+  - component: {fileID: -1446813038409660856}
   m_Layer: 3
   m_Name: PropTable
   m_TagString: Untagged
@@ -363,6 +364,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridBounds: {x: 23, y: 8}
   waitToWander: 5
-  moveSpeed: 5
-  moveEase: 1
-  canMove: 0
+  moveDuration: 3
+  moveSpeed: 2
+  avoidPoint: {x: 0.08571339, y: 0.7000001}
+  avoidDistance: 10
+  maxIterations: 500
+--- !u!50 &-1446813038409660856
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8216714926860384011}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4

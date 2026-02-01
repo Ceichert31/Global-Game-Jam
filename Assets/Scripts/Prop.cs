@@ -120,6 +120,7 @@ public class Prop : MonoBehaviour, IInteractable, IProp
         isMoving = true;
         Invoke(nameof(ResetActiveStatus), Random.Range(activeStateTime.Min, activeStateTime.Max));
         wander.SetCanMove(true);
+        wander.SetRbKinematic(false);
         UpdateTimer();
     }
 
@@ -127,6 +128,7 @@ public class Prop : MonoBehaviour, IInteractable, IProp
     {
         isMoving = false;
         wander.SetCanMove(false);
+        wander.SetRbKinematic(false);
     }
 
     private void UpdateTimer()
@@ -150,6 +152,8 @@ public class Prop : MonoBehaviour, IInteractable, IProp
         transform.DOKill();
         CancelInvoke();
 
+        wander.SetRbKinematic(true);
+
         isHeld = true;
         isMoving = false;
         isShaking = false;
@@ -161,6 +165,7 @@ public class Prop : MonoBehaviour, IInteractable, IProp
     {
         Invoke(nameof(ResetIsHeld), DropDelay);
         drops.Play(source);
+        wander.SetRbKinematic(false);
 
         UpdateTimer();
     }
