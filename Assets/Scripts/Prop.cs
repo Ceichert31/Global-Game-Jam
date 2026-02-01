@@ -15,6 +15,10 @@ public class Prop : MonoBehaviour, IInteractable, IProp
     [SerializeField]
     private RangedFloat activeStateTime;
 
+    [Tooltip("How long the object shakes before moving")]
+    [SerializeField]
+    private float moveDelay = 0.7f;
+
     private bool isMoving;
 
     private float changeStateTimer;
@@ -78,16 +82,31 @@ public class Prop : MonoBehaviour, IInteractable, IProp
         //Timer runs out
         if (changeStateTimer < Time.time)
         {
-            isMoving = true;
-            Invoke(
-                nameof(ResetActiveStatus),
-                Random.Range(activeStateTime.Min, activeStateTime.Max)
-            );
-            wander.SetCanMove(true);
-            UpdateTimer();
+            ShakeObject();
+            Invoke(nameof(EnableMovingState), moveDelay);
         }
 
-        if (updateTweenTickTimer < Time.time && isMoving)
+        if (lifetimeTimer < Time.time)
+        {
+            // cue breaking and turning into rubbish
+            transform.DOKill();
+            Instantiate(rubbish, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+    }
+
+    private void EnableMovingState()
+    {
+        isMoving = true;
+        Invoke(nameof(ResetActiveStatus), Random.Range(activeStateTime.Min, activeStateTime.Max));
+        wander.SetCanMove(true);
+        UpdateTimer();
+    }
+
+    private void ShakeObject()
+    {
+        //Shake action
+        if (updateTweenTickTimer < Time.time)
         {
             updateTweenTickTimer = Time.time + updateTweenTick;
 
@@ -98,14 +117,6 @@ public class Prop : MonoBehaviour, IInteractable, IProp
                 .DOShakePosition(shakeDuration, shakeIntensity)
                 .SetEase(shakeEaseMode)
                 .SetLoops(-1, LoopType.Yoyo);
-        }
-
-        if (lifetimeTimer < Time.time)
-        {
-            // cue breaking and turning into rubbish
-            transform.DOKill();
-            Instantiate(rubbish, transform.position, transform.rotation);
-            Destroy(gameObject);
         }
     }
 
