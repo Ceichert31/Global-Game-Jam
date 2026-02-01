@@ -18,7 +18,6 @@ public class AutomatedBuild
 
         PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Disabled;
         PlayerSettings.WebGL.decompressionFallback = true;
-        PlayerSettings.WebGL.template = "PROJECT:Default";
 
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
 
