@@ -9,23 +9,13 @@ public class WanderToPoint : MonoBehaviour
     private Vector2 gridBounds;
 
     [SerializeField]
-    private float waitToWander = 5.0f; // Wait time between movements
+    private float waitToWander = 5.0f;
 
     [SerializeField]
-    private float moveDuration = 3.0f; // How long to move for
+    private float moveDuration = 3.0f;
 
     [SerializeField]
     private float moveSpeed = 5.0f;
-
-    [Header("Avoidance")]
-    [SerializeField]
-    private Vector2 avoidPoint;
-
-    [SerializeField]
-    private float avoidDistance = 5f;
-
-    [SerializeField]
-    private int maxIterations = 500;
 
     private Rigidbody2D rb;
     private bool canMove = true;
@@ -136,10 +126,6 @@ public class WanderToPoint : MonoBehaviour
         // Draw grid bounds
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(gridBounds / 2, gridBounds);
-
-        // Draw avoid zone
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(avoidPoint, avoidDistance);
 
         // Draw current target
         if (isCurrentlyMoving && Application.isPlaying)
