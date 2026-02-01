@@ -2665,7 +2665,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: timeBeforeOpen
-      value: 1
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: checkCompleteDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: _canAdvanceTutorial
@@ -3097,6 +3101,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: checkCompleteDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: _canAdvanceTutorial
       value: 1
       objectReference: {fileID: 0}
@@ -3304,6 +3312,7 @@ MonoBehaviour:
   - {fileID: 637255433}
   - {fileID: 950279680}
   - {fileID: 2077160419}
+  - {fileID: 1982456777}
 --- !u!1 &1129990620
 GameObject:
   m_ObjectHideFlags: 0
@@ -4015,7 +4024,7 @@ PrefabInstance:
     - target: {fileID: 2542914157327791756, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: eventChannel
       value: 
-      objectReference: {fileID: 11400000, guid: 56b78a39381e0ca47a1ac2a05c270b48, type: 2}
+      objectReference: {fileID: 11400000, guid: 9cc3eb8fd09e6f04798ccbeec55e049c, type: 2}
     - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_text
       value: Goal
@@ -4118,7 +4127,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: timeBeforeOpen
-      value: 1
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: checkCompleteDelay
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: _canAdvanceTutorial
@@ -4412,6 +4425,7 @@ MonoBehaviour:
   grid: {fileID: 1413611123}
   footsteps: {fileID: 11400000, guid: 368b2be8120e9bf4b8c3943f229bc6a0, type: 2}
   source: {fileID: 1384621031}
+  anyInputCheck: {fileID: 11400000, guid: 9cc3eb8fd09e6f04798ccbeec55e049c, type: 2}
   flipDuration: 0.3
   flipEase: 1
   moveCheck: {fileID: 11400000, guid: bd91e481162138544891d6e5b1fa78d8, type: 2}
@@ -6517,6 +6531,11 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 962465412545376582, guid: ee7651fe8345d244d843dbd17b01e5f5, type: 3}
   m_PrefabInstance: {fileID: 1963974840}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1982456777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6819598237863293934, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+  m_PrefabInstance: {fileID: 1319031537}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2033825161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6850,7 +6869,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: timeBeforeOpen
-      value: 1
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: checkCompleteDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: _canAdvanceTutorial
