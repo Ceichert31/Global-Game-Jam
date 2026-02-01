@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7100655438760218334}
   - component: {fileID: 1981326031087364117}
+  - component: {fileID: 3328430282013661345}
+  - component: {fileID: 9175223561724092292}
   m_Layer: 0
   m_Name: BG_StageCrew_1920_1080_chair
   m_TagString: Untagged
@@ -84,6 +86,64 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &3328430282013661345
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506354517505692510}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 9
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.035204887, y: -0.1}
+  m_SpriteTilingProperty:
+    border: {x: 8.16, y: 3.26, z: 8.17, w: 5.87}
+    pivot: {x: 0.50183356, y: 0.3924338}
+    oldSize: {x: 19.2, y: 10.8}
+    newSize: {x: 1.7777778, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.1, y: 2.5}
+  m_EdgeRadius: 0
+--- !u!114 &9175223561724092292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506354517505692510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8cb62d79a0a4d46a60398c88303c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backdropLayer: 1
 --- !u!1 &8216714926860384011
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +198,8 @@ MonoBehaviour:
   activeStateTime:
     Min: 5
     Max: 10
-  shakeDuration: 0.1
+  moveDelay: 0.2
+  shakeDuration: 1.5
   shakeIntensity: 0.1
   shakeEaseMode: 25
   lifetime:

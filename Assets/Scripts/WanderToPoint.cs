@@ -21,6 +21,7 @@ public class WanderToPoint : MonoBehaviour
 
     [SerializeField]
     private bool canMove = true;
+    private Tweener moveTween;
 
     void Start()
     {
@@ -38,7 +39,7 @@ public class WanderToPoint : MonoBehaviour
 
         if (moveTimer < Time.time)
         {
-            transform.DOMove(PickPoint(), moveSpeed).SetEase(moveEase);
+            MoveToRandomPoint();
             moveTimer = Time.time + waitToWander;
         }
     }
@@ -47,9 +48,29 @@ public class WanderToPoint : MonoBehaviour
     Vector2 PickPoint()
     {
         // Return random number based off min/max
-        Vector2 point = new Vector2(Random.Range(0, gridBounds.x), Random.Range(0, gridBounds.y));
-        return point;
+        return new Vector2(Random.Range(0, gridBounds.x), Random.Range(0, gridBounds.y));
     }
 
-    public void SetCanMove(bool canMove) => this.canMove = canMove;
+    private void MoveToRandomPoint()
+    {
+        moveTween?.Kill();
+
+        Vector2 targetPoint = PickPoint();
+        moveTween = transform.DOMove(targetPoint, moveSpeed).SetEase(moveEase);
+    }
+
+    public void SetCanMove(bool canMove)
+    {
+        this.canMove = canMove;
+        if (!canMove)
+        {
+            moveTween?.Kill();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        moveTween?.Kill();
+        transform.DOKill();
+    }
 }

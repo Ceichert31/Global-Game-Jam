@@ -20,6 +20,7 @@ public class Prop : MonoBehaviour, IInteractable, IProp
     private float moveDelay = 0.7f;
 
     private bool isMoving;
+    private bool isShaking;
 
     private float changeStateTimer;
 
@@ -62,6 +63,8 @@ public class Prop : MonoBehaviour, IInteractable, IProp
 
     private WanderToPoint wander;
 
+    private Tweener shakeTween;
+
     public void Start()
     {
         UpdateTimer();
@@ -80,10 +83,9 @@ public class Prop : MonoBehaviour, IInteractable, IProp
             return;
 
         //Timer runs out
-        if (changeStateTimer < Time.time)
+        if (changeStateTimer < Time.time && !isShaking && !isMoving)
         {
-            ShakeObject();
-            Invoke(nameof(EnableMovingState), moveDelay);
+            StartShakeCycle();
         }
 
         if (lifetimeTimer < Time.time)
@@ -95,29 +97,30 @@ public class Prop : MonoBehaviour, IInteractable, IProp
         }
     }
 
+    /// <summary>
+    /// Starts shaking before moving
+    /// </summary>
+    private void StartShakeCycle()
+    {
+        isShaking = true;
+        transform.DOKill();
+
+        shakeTween = transform
+            .DOShakePosition(moveDelay, shakeIntensity, 10, 90, false, true)
+            .SetEase(shakeEaseMode)
+            .OnComplete(() =>
+            {
+                isShaking = false;
+                EnableMovingState();
+            });
+    }
+
     private void EnableMovingState()
     {
         isMoving = true;
         Invoke(nameof(ResetActiveStatus), Random.Range(activeStateTime.Min, activeStateTime.Max));
         wander.SetCanMove(true);
         UpdateTimer();
-    }
-
-    private void ShakeObject()
-    {
-        //Shake action
-        if (updateTweenTickTimer < Time.time)
-        {
-            updateTweenTickTimer = Time.time + updateTweenTick;
-
-            transform.DOKill();
-
-            //Cache current tween
-            movementTween = transform
-                .DOShakePosition(shakeDuration, shakeIntensity)
-                .SetEase(shakeEaseMode)
-                .SetLoops(-1, LoopType.Yoyo);
-        }
     }
 
     private void ResetActiveStatus()
@@ -142,10 +145,15 @@ public class Prop : MonoBehaviour, IInteractable, IProp
 
     public void PickUp()
     {
-        //Kill all tweens
-        movementTween?.Kill();
+        // Stop all tweens and invokes
+        shakeTween?.Kill();
         transform.DOKill();
+        CancelInvoke();
+
         isHeld = true;
+        isMoving = false;
+        isShaking = false;
+
         pickups.Play(source);
     }
 
@@ -153,6 +161,8 @@ public class Prop : MonoBehaviour, IInteractable, IProp
     {
         Invoke(nameof(ResetIsHeld), DropDelay);
         drops.Play(source);
+
+        UpdateTimer();
     }
 
     private void ResetIsHeld() => isHeld = false;
@@ -160,6 +170,11 @@ public class Prop : MonoBehaviour, IInteractable, IProp
     public void setRubbish(GameObject rub)
     {
         rubbish = rub;
+    }
+
+    private void OnDestroy()
+    {
+        transform.DOKill();
     }
 }
 
