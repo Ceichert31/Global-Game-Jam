@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Tutorial_System.Scripts.EventChannel;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -69,6 +70,9 @@ public class InputController : MonoBehaviour
     [SerializeField]
     private Ease flipEase = Ease.Linear;
 
+    [SerializeField]
+    private VoidEventChannel moveCheck;
+
     private void Update()
     {
         //Moving left
@@ -113,6 +117,7 @@ public class InputController : MonoBehaviour
         if (playerActions.Move.ReadValue<Vector2>().magnitude != 0)
         {
             isMoving = true;
+            moveCheck.CallEvent();
         }
         else
         {

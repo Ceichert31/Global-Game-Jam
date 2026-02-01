@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Tutorial_System.Scripts.EventChannel;
 using UnityEngine;
 
 public class PlayerInteractor : MonoBehaviour
@@ -35,6 +36,9 @@ public class PlayerInteractor : MonoBehaviour
     private const float PickUpDelay = 0.15f;
 
     private bool canPickUp = true;
+
+    [SerializeField]
+    private VoidEventChannel pickupCheck;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -96,6 +100,8 @@ public class PlayerInteractor : MonoBehaviour
     {
         if (!canPickUp)
             return;
+
+        pickupCheck.CallEvent();
 
         heldPropData.PickUp();
 
