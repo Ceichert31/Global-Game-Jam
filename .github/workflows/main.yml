@@ -1,7 +1,5 @@
 name: Build Unity project
-
 on: [push, pull_request]
-
 jobs:
   BuildForWebGL:
     runs-on: ubuntu-latest
@@ -10,7 +8,7 @@ jobs:
         with:
           lfs: true 
           fetch-depth: 0
-
+      
       - name: Cache Library
         uses: actions/cache@v4
         with:
@@ -30,24 +28,17 @@ jobs:
           buildMethod: AutomatedBuild.BuildWeb
           unityVersion: 6000.0.66f1
           versioning: Semantic
-
+          buildsPath: builds
+      
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: WebGL-Build
-          path: |
-            **/builds/*.html
-            builds/**/*.html
-            builds/**/*.html
-
-
+          path: builds/WebGL
+      
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: |
-            **/builds/
-            builds/**/
-            builds/**/
-
+          folder: builds/WebGL 
