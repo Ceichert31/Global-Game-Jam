@@ -362,13 +362,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f48ccb66c4de624ca254c07cb85621d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridBounds: {x: 23, y: 8}
-  waitToWander: 5
+  gridBoundsMax: {x: 25, y: 7}
+  gridBoundsMin: {x: 0.5, y: 1}
+  waitToWander: 10
   moveDuration: 3
   moveSpeed: 2
-  avoidPoint: {x: 0.08571339, y: 0.7000001}
-  avoidDistance: 10
-  maxIterations: 500
 --- !u!50 &-7194221539717929041
 Rigidbody2D:
   serializedVersion: 4

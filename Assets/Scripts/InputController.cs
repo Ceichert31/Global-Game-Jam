@@ -31,6 +31,9 @@ public class InputController : MonoBehaviour
 
     private SpriteRenderer characterSprite;
 
+    [SerializeField]
+    private VoidEventChannel anyInputCheck;
+
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -91,6 +94,11 @@ public class InputController : MonoBehaviour
             flipTween = characterSprite
                 .transform.DOLocalRotate(new Vector3(0, 0, 0), flipDuration)
                 .SetEase(flipEase);
+        }
+
+        if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
+        {
+            anyInputCheck.CallEvent();
         }
 
         /* //Shake player

@@ -8,34 +8,51 @@ namespace Tutorial_System.Scripts
     {
         [Header("Display Settings")]
         [Tooltip("How long of a delay there should be before opening the next tutorial")]
-        [SerializeField] private float timeBeforeOpen;
+        [SerializeField]
+        private float timeBeforeOpen;
 
         [Header("Animation Settings")]
         [Tooltip("The speed at which the tutorial window opens")]
-        [SerializeField] private float tutorialWindowOpenSpeed;
-    
+        [SerializeField]
+        private float tutorialWindowOpenSpeed;
+
         [Tooltip("The easing function used when opening the tutorial window")]
-        [SerializeField] private Ease tutorialWindowOpenEase;
-    
+        [SerializeField]
+        private Ease tutorialWindowOpenEase;
+
         [Tooltip("The speed at which the tutorial window closes")]
-        [SerializeField] private float tutorialWindowCloseSpeed;
-    
+        [SerializeField]
+        private float tutorialWindowCloseSpeed;
+
         [Tooltip("The easing function used when closing the tutorial window")]
-        [SerializeField] private Ease tutorialWindowCloseEase;
+        [SerializeField]
+        private Ease tutorialWindowCloseEase;
+
+        [SerializeField]
+        private float checkCompleteDelay = 2f;
 
         public bool IsComplete => _isComplete;
-        
+
         public EventHandler<EventArgs> OnComplete { get; set; }
 
         [Tooltip("Determines whether completing this tutorial step will advance to the next step")]
-        public bool CanAdvanceTutorial { get => _canAdvanceTutorial; set => _canAdvanceTutorial = value; }
+        public bool CanAdvanceTutorial
+        {
+            get => _canAdvanceTutorial;
+            set => _canAdvanceTutorial = value;
+        }
 
         [SerializeField]
         private bool _canAdvanceTutorial;
 
         private bool _isComplete;
-    
+
         public void EnterStep()
+        {
+            Invoke(nameof(EnterLogic), timeBeforeOpen);
+        }
+
+        private void EnterLogic()
         {
             transform.DOKill();
             transform.DOScaleY(1, tutorialWindowOpenSpeed).SetEase(tutorialWindowOpenEase);
@@ -46,11 +63,18 @@ namespace Tutorial_System.Scripts
         /// </summary>
         public void CheckComplete()
         {
-            if (IsComplete) return;
-        
+            Invoke(nameof(CompleteLogic), checkCompleteDelay);
+        }
+
+        private void CompleteLogic()
+        {
+            if (IsComplete)
+                return;
+
             //If y scale is 0, that means it is minimized and we shouldn't do anything
-            if (transform.localScale.y == 0) return;
-            
+            if (transform.localScale.y == 0)
+                return;
+
             _isComplete = true;
             OnComplete?.Invoke(this, EventArgs.Empty);
         }
