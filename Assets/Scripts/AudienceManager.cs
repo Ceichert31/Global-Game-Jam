@@ -67,6 +67,8 @@ public class AudienceManager : MonoBehaviour
     private int score;
     private int itemsPickedUp;
 
+    public Animation closeAnim;
+
     void Start()
     {
         if (instance == null)
@@ -118,6 +120,8 @@ public class AudienceManager : MonoBehaviour
 
     private void EndGame()
     {
+        closeAnim.Play();
+
         //Close curtain,
         //Display score
         scoreText.text = $"score: {score} \n items picked up: {itemsPickedUp}";
@@ -132,18 +136,19 @@ public class AudienceManager : MonoBehaviour
 
     private IEnumerator SlowTime()
     {
-        float duration = 0.5f;
-        float elapsedTime = 0;
+        yield return null;
+        //float duration = 0.5f;
+        //float elapsedTime = 0;
 
-        while (elapsedTime < duration)
-        {
-            elapsedTime += Time.deltaTime;
+        //while (elapsedTime < duration)
+        //{
+        //    elapsedTime += Time.deltaTime;
 
-            Time.timeScale = Mathf.Lerp(1, 0, elapsedTime / duration);
+        //    Time.timeScale = Mathf.Lerp(1, 0, elapsedTime / duration);
 
-            yield return null;
-        }
-        Time.timeScale = 0;
+        //    yield return null;
+        //}
+        //Time.timeScale = 0;
     }
 
     void UpdateParticleTimer(float dt)
