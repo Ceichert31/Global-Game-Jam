@@ -34,8 +34,8 @@ public class AudienceManager : MonoBehaviour
 
     [SerializeField]
     List<ParticleSystem> madEffects;
-    float effectTimerMax = 4.0f;
-    float effectTimerMin = 1.0f;
+    float effectTimerMax = 5.0f;
+    float effectTimerMin = 2.0f;
     float effectTimer;
     float currEffectTimer;
 
@@ -156,7 +156,7 @@ public class AudienceManager : MonoBehaviour
 
     void PlayParticleEffect()
     {
-        if (currSatisfaction <= 50.0f)
+        if (currSatisfaction >= 50.0f)
         {
             if (happyEffects.Count == 0)
                 return;
