@@ -63,9 +63,6 @@ public class PlayerInteractor : MonoBehaviour
         if (heldProp == null)
             return;
 
-        //Handle dropping logic
-        //Will need grid here
-
         var closetTile = grid.GetClosestTile(
             new Vector2(transform.position.x, transform.position.y)
         );

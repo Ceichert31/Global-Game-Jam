@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class LightingContols : MonoBehaviour
 {
@@ -70,15 +71,20 @@ public class LightingContols : MonoBehaviour
                 ),
                 Space.World
             );
-        }
 
-        if (transform.eulerAngles.x > lightingBoundLeft) // If too far left
-        {
-            transform.eulerAngles = new Vector3(0, 0, lightingBoundLeft);
-        }
-        else if (transform.eulerAngles.x < lightingBoundRight) // if too far right
-        {
-            transform.eulerAngles = new Vector3(0, 0, lightingBoundRight);
+            // Get current rotation in -180 to 180 range
+            float currentZ = transform.eulerAngles.z;
+            if (currentZ > 180f)
+                currentZ -= 360f;
+
+            // Calculate and clamp new rotation
+            float newZ = Mathf.Clamp(
+                currentZ - lightActions.MoveLight.ReadValue<float>() * Time.deltaTime * moveSpeed,
+                lightingBoundRight,
+                lightingBoundLeft
+            );
+
+            transform.rotation = Quaternion.Euler(0, 0, newZ);
         }
     }
 }
