@@ -1981,7 +1981,7 @@ MonoBehaviour:
   gridWidth: 25
   gridHeight: 8
   propSpawnChance: 1
-  debug: 1
+  debug: 0
   isActive: 1
   propObject: {fileID: 8216714926860384011, guid: 8250194923c1b064aaf8fbbef04e96a3, type: 3}
   rubbishObject: {fileID: 0}

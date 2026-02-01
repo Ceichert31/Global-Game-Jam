@@ -83,8 +83,6 @@ public class PlayerInteractor : MonoBehaviour
 
             heldProp.transform.SetParent(null);
 
-            Debug.Log($"End Position: {targetPos}");
-
             //Execute interact logic, move object to hold pos
             grabTween = heldProp.transform.DOMove(targetPos, grabDuration).SetEase(grabEaseMode);
 
