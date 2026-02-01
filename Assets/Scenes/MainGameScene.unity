@@ -2168,6 +2168,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3388178516490742526, guid: 9aad026afd1014b4293b098e2126674c, type: 3}
+      propertyPath: meterGradient.key0.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388178516490742526, guid: 9aad026afd1014b4293b098e2126674c, type: 3}
       propertyPath: meterGradient.key0.b
       value: 0.015912056
       objectReference: {fileID: 0}
@@ -2178,6 +2182,10 @@ PrefabInstance:
     - target: {fileID: 3388178516490742526, guid: 9aad026afd1014b4293b098e2126674c, type: 3}
       propertyPath: meterGradient.key0.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388178516490742526, guid: 9aad026afd1014b4293b098e2126674c, type: 3}
+      propertyPath: meterGradient.key1.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3388178516490742526, guid: 9aad026afd1014b4293b098e2126674c, type: 3}
       propertyPath: meterGradient.key1.b
