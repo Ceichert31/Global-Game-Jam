@@ -199,9 +199,9 @@ MonoBehaviour:
   activeStateTime:
     Min: 1
     Max: 3
-  moveDelay: 0.2
+  moveDelay: 0.5
   shakeDuration: 1.5
-  shakeIntensity: 0.1
+  shakeIntensity: 0.2
   shakeEaseMode: 25
   lifetime:
     Min: 60
