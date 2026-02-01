@@ -1,5 +1,9 @@
 name: Build Unity project
 on: [push, pull_request]
+
+permissions:
+  contents: write
+
 jobs:
   BuildForWebGL:
     runs-on: ubuntu-latest
