@@ -3150,7 +3150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: checkCompleteDelay
-      value: 0.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: _canAdvanceTutorial
@@ -3729,7 +3729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: checkCompleteDelay
-      value: 0.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: _canAdvanceTutorial
@@ -7790,7 +7790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: checkCompleteDelay
-      value: 0.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: _canAdvanceTutorial
