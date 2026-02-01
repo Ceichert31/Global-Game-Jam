@@ -2547,6 +2547,18 @@ PrefabInstance:
       propertyPath: m_text
       value: Use WASD to move
       objectReference: {fileID: 0}
+    - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2914862953385122354, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2542914157327791756, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: eventChannel
       value: 
@@ -2554,6 +2566,18 @@ PrefabInstance:
     - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_text
       value: Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2914862953385122354, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3140342999157787624, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_Pivot.x
@@ -2641,11 +2665,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: timeBeforeOpen
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: _canAdvanceTutorial
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: tutorialWindowOpenSpeed
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6819598237863293934, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_Name
@@ -2948,6 +2976,22 @@ PrefabInstance:
       propertyPath: m_text
       value: Press E and Q to rotate stage light
       objectReference: {fileID: 0}
+    - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2914862953385122354, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2542914157327791756, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: eventChannel
       value: 
@@ -2955,6 +2999,18 @@ PrefabInstance:
     - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_text
       value: Stage Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2914862953385122354, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3140342999157787624, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_Pivot.x
@@ -3043,6 +3099,10 @@ PrefabInstance:
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: _canAdvanceTutorial
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: tutorialWindowOpenSpeed
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6819598237863293934, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_Name
@@ -3923,18 +3983,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1094585809}
     m_Modifications:
+    - target: {fileID: 339390817912955320, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_text
       value: Keep the stagelight on the actor while stopping rowdy props from ruining
         the show!
       objectReference: {fileID: 0}
     - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_lineSpacing
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2914862953385122354, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_enableWordWrapping
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2542914157327791756, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: eventChannel
@@ -3943,6 +4019,18 @@ PrefabInstance:
     - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_text
       value: Goal
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2914862953385122354, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3140342999157787624, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_Pivot.x
@@ -4030,11 +4118,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: timeBeforeOpen
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: _canAdvanceTutorial
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: tutorialWindowOpenSpeed
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6819598237863293934, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_Name
@@ -6636,6 +6728,22 @@ PrefabInstance:
       propertyPath: m_text
       value: Use SPACE to pick up and drop props
       objectReference: {fileID: 0}
+    - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2914862953385122354, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2150020907734412412, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2542914157327791756, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: eventChannel
       value: 
@@ -6643,6 +6751,18 @@ PrefabInstance:
     - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_text
       value: Carrying Props
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2914862953385122354, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+    - target: {fileID: 2876418253871963252, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3140342999157787624, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_Pivot.x
@@ -6730,11 +6850,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: timeBeforeOpen
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: _canAdvanceTutorial
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987648327949360065, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
+      propertyPath: tutorialWindowOpenSpeed
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6819598237863293934, guid: 1e0e502556f5817428f5013b83dabde9, type: 3}
       propertyPath: m_Name
