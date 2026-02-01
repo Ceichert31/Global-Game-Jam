@@ -364,8 +364,8 @@ MonoBehaviour:
 
     William Skish, Sound Design'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
-  m_sharedMaterial: {fileID: -2914862953385122354, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 03cf2094e2b220c4eb5502181fac9b19, type: 2}
+  m_sharedMaterial: {fileID: -5373535391916390890, guid: 03cf2094e2b220c4eb5502181fac9b19, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1705,7 +1705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1722149557
 RectTransform:
   m_ObjectHideFlags: 0
