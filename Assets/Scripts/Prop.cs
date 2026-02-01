@@ -88,13 +88,13 @@ public class Prop : MonoBehaviour, IInteractable, IProp
             StartShakeCycle();
         }
 
-        if (lifetimeTimer < Time.time)
-        {
-            // cue breaking and turning into rubbish
-            transform.DOKill();
-            Instantiate(rubbish, transform.position, transform.rotation);
-            Destroy(gameObject);
-        }
+        //if (lifetimeTimer < Time.time)
+        //{
+        //    // cue breaking and turning into rubbish
+        //    transform.DOKill();
+        //    Instantiate(rubbish, transform.position, transform.rotation);
+        //    Destroy(gameObject);
+        //}
     }
 
     /// <summary>
