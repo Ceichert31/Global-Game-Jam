@@ -334,36 +334,35 @@ MonoBehaviour:
 
     Ayden Brumley, Production
 
-    
+
 
     Chris Eichert, Programming
 
-    
+
 
     Arija
     Hartel, Programming
 
-    
+
 
     Isa Flaherty, Design
 
-    
 
-    Charlotte
-    Peterson, Design
 
-    
+    Charlotte Peterson, Design
 
-    Nick Gushard, Art
 
-    
+
+    Nick
+    Gushard, Art
+
+
 
     Max Bouquot, Art
 
-    
 
-    William
-    Skish, Sound Design'
+
+    William Skish, Sound Design'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
   m_sharedMaterial: {fileID: -2914862953385122354, guid: 99738a0afb78ca24ca9eed68bbcafe7c, type: 2}
@@ -402,7 +401,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -40
+  m_lineSpacing: -74
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -1706,7 +1705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1722149557
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1738,6 +1737,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 7aa0089fb0af44b46a67f7910e52b92c, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 7aa0089fb0af44b46a67f7910e52b92c, type: 2}
+  - {fileID: 7400000, guid: 85246d42247696e45af1a9bb36dd8df7, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
