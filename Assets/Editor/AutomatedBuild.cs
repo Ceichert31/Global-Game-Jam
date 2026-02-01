@@ -6,7 +6,12 @@ public class AutomatedBuild
 {
     public static void BuildWeb()
     {
-        string[] scenes = new string[] { "Assets/Scenes/MainGameScene.unity" };
+        string[] scenes = new string[]
+        {
+            "Assets/Scenes/TitleScreen.unity",
+            "Assets/Scenes/MainGameScene.unity",
+            "Assets/Scenes/GameOverScreen.unity",
+        };
 
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
         {
@@ -18,6 +23,12 @@ public class AutomatedBuild
 
         PlayerSettings.WebGL.compressionFormat = WebGLCompressionFormat.Disabled;
         PlayerSettings.WebGL.decompressionFallback = true;
+
+        PlayerSettings.stripEngineCode = false;
+        PlayerSettings.SetManagedStrippingLevel(
+            BuildTargetGroup.WebGL,
+            ManagedStrippingLevel.Minimal
+        );
 
         BuildReport report = BuildPipeline.BuildPlayer(buildPlayerOptions);
 
