@@ -9,6 +9,7 @@ public class AutomatedBuild
         string[] scenes = new string[]
         {
             "Assets/Scenes/TitleScreen.unity",
+            "Assets/Scenes/ComicScene.unity",
             "Assets/Scenes/MainGameScene.unity",
             "Assets/Scenes/GameOverScreen.unity",
         };
