@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AudienceManager : MonoBehaviour
@@ -47,6 +48,12 @@ public class AudienceManager : MonoBehaviour
     {
         meterFillPercent = currSatisfaction / maxSatisfaction;
         audienceMeter.fillAmount = meterFillPercent;
+
+        if (currSatisfaction <= 0)
+        {
+            //End game
+            SceneManager.LoadSceneAsync("GameOverScreen");
+        }
     }
 
     public float GetAudienceSatisfaction()

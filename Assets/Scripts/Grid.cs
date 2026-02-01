@@ -27,6 +27,7 @@ public class Grid : MonoBehaviour
 
     [SerializeField]
     private GameObject propObject;
+
     [SerializeField]
     private GameObject rubbishObject;
 
@@ -39,19 +40,7 @@ public class Grid : MonoBehaviour
         {
             for (float j = 0; j < gridHeight; j += gridSize)
             {
-                int value = Random.Range(0, 100);
-
-                Vector2 key = new Vector2(i, j);
-
-                if (value <= propSpawnChance)
-                {
-                    Instantiate(propObject, key, Quaternion.identity, transform);
-                    gridData.TryAdd(new Vector2(i, j), new TileData(true, key));
-                }
-                else
-                {
-                    gridData.TryAdd(new Vector2(i, j), new TileData(false, key));
-                }
+                gridData.TryAdd(new Vector2(i, j), new TileData(false, new Vector2(i, j)));
             }
         }
     }
